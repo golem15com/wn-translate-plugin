@@ -14,7 +14,7 @@ use Golem15\Translate\Models\Message;
 /**
  * Theme scanner class
  *
- * @package winter\translate
+ * @package golem15\translate
  * @author Alexey Bobkov, Samuel Georges
  */
 class ThemeScanner

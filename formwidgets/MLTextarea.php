@@ -8,7 +8,7 @@ use Backend\Classes\FormWidgetBase;
  * ML Textarea
  * Renders a multi-lingual textarea field.
  *
- * @package winter\translate
+ * @package golem15\translate
  * @author Alexey Bobkov, Samuel Georges
  */
 class MLTextarea extends FormWidgetBase

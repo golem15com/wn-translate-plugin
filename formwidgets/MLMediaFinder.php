@@ -10,7 +10,7 @@ use Golem15\Translate\Models\Locale;
  * ML MediaFinder Form Widget
  * Renders a multilingual media finder.
  *
- * @package winter\translate
+ * @package golem15\translate
  * @author Sascha Aeppli
  */
 class MLMediaFinder extends MediaFinder

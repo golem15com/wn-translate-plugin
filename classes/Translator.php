@@ -13,7 +13,7 @@ use Golem15\Translate\Models\Locale;
 /**
  * Translate class
  *
- * @package winter\translate
+ * @package golem15\translate
  * @author Alexey Bobkov, Samuel Georges
  */
 class Translator
@@ -110,7 +110,7 @@ class Translator
             return $this->isConfigured = true;
         }
 
-        if (App::hasDatabase() && Schema::hasTable('winter_translate_locales')) {
+        if (App::hasDatabase() && Schema::hasTable('golem15_translate_locales')) {
             Cache::forever(self::SESSION_CONFIGURED, true);
             return $this->isConfigured = true;
         }

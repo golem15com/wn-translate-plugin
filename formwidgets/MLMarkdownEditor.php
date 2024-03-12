@@ -9,7 +9,7 @@ use Golem15\Translate\Models\Locale;
  * ML Markdown Editor
  * Renders a multi-lingual Markdown editor.
  *
- * @package winter\translate
+ * @package golem15\translate
  * @author Alexey Bobkov, Samuel Georges
  */
 class MLMarkdownEditor extends MarkdownEditor

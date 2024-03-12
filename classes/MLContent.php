@@ -5,7 +5,7 @@ namespace Golem15\Translate\Classes;
 /**
  * Represents a multi-lingual Static Content object.
  *
- * @package winter\translate
+ * @package golem15\translate
  * @author Alexey Bobkov, Samuel Georges
  */
 class MLContent extends MLCmsObject

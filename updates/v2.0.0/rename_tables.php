@@ -18,7 +18,7 @@ class RenameTables extends Migration
     {
         foreach (self::TABLES as $table) {
             $from = 'rainlab_translate_' . $table;
-            $to   = 'winter_translate_' . $table;
+            $to   = 'golem15_translate_' . $table;
             if (Schema::hasTable($from) && !Schema::hasTable($to)) {
                 Schema::rename($from, $to);
             }
@@ -33,7 +33,7 @@ class RenameTables extends Migration
     public function down()
     {
         foreach (self::TABLES as $table) {
-            $from = 'winter_translate_' . $table;
+            $from = 'golem15_translate_' . $table;
             $to   = 'rainlab_translate_' . $table;
             if (Schema::hasTable($from) && !Schema::hasTable($to)) {
                 Schema::rename($from, $to);

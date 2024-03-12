@@ -10,7 +10,7 @@ use Golem15\Translate\Classes\Translator;
 /**
  * Base class for model behaviors.
  *
- * @package winter\translate
+ * @package golem15\translate
  * @author Alexey Bobkov, Samuel Georges
  */
 abstract class TranslatableBehavior extends ExtensionBase

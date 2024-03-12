@@ -21,7 +21,7 @@ class Locale extends Model
     /**
      * @var string The database table used by the model.
      */
-    public $table = 'winter_translate_locales';
+    public $table = 'golem15_translate_locales';
 
     /**
      * @var array Validation rules

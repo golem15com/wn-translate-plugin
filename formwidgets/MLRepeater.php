@@ -12,7 +12,7 @@ use Golem15\Translate\Models\Locale;
  * ML Repeater
  * Renders a multi-lingual repeater field.
  *
- * @package winter\translate
+ * @package golem15\translate
  * @author Alexey Bobkov, Samuel Georges
  */
 class MLRepeater extends Repeater

@@ -9,7 +9,7 @@ use Golem15\Translate\Models\Locale;
  * ML Rich Editor
  * Renders a multi-lingual WYSIWYG editor.
  *
- * @package winter\translate
+ * @package golem15\translate
  * @author Alexey Bobkov, Samuel Georges
  */
 class MLRichEditor extends RichEditor

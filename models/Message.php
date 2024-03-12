@@ -17,7 +17,7 @@ class Message extends Model
     /**
      * @var string The database table used by the model.
      */
-    public $table = 'winter_translate_messages';
+    public $table = 'golem15_translate_messages';
 
     /**
      * @var array Guarded fields

@@ -5,7 +5,7 @@ namespace Golem15\Translate\Classes;
 /**
  * Represents a multi-lingual Static Page object.
  *
- * @package winter\translate
+ * @package golem15\translate
  * @author Alexey Bobkov, Samuel Georges
  */
 class MLStaticPage extends MLCmsObject

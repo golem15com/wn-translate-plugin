@@ -10,7 +10,7 @@ use Golem15\Translate\Models\Locale;
  * Generic ML Control
  * Renders a multi-lingual control.
  *
- * @package winter\translate
+ * @package golem15\translate
  * @author Alexey Bobkov, Samuel Georges
  */
 trait MLControl

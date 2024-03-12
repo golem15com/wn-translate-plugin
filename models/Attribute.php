@@ -12,7 +12,7 @@ class Attribute extends Model
     /**
      * @var string The database table used by the model.
      */
-    public $table = 'winter_translate_attributes';
+    public $table = 'golem15_translate_attributes';
 
     public $morphTo = [
         'model' => []

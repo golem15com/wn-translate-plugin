@@ -23,7 +23,7 @@ class SeedAllTables extends Seeder
         }
 
         Locale::extend(function ($model) {
-            $model->setTable('winter_translate_locales');
+            $model->setTable('golem15_translate_locales');
         });
 
     }
