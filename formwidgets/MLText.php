@@ -1,6 +1,6 @@
 <?php
 
-namespace Winter\Translate\FormWidgets;
+namespace Golem15\Translate\FormWidgets;
 
 use Backend\Classes\FormWidgetBase;
 
@@ -13,7 +13,7 @@ use Backend\Classes\FormWidgetBase;
  */
 class MLText extends FormWidgetBase
 {
-    use \Winter\Translate\Traits\MLControl;
+    use \Golem15\Translate\Traits\MLControl;
 
     /**
      * {@inheritDoc}

@@ -1,11 +1,11 @@
 <?php
 
-namespace Winter\Translate\Behaviors;
+namespace Golem15\Translate\Behaviors;
 
 use Winter\Storm\Halcyon\Model as HalcyonModel;
-use Winter\Translate\Classes\MLCmsObject;
-use Winter\Translate\Classes\TranslatableBehavior;
-use Winter\Translate\Models\Locale;
+use Golem15\Translate\Classes\MLCmsObject;
+use Golem15\Translate\Classes\TranslatableBehavior;
+use Golem15\Translate\Models\Locale;
 
 /**
  * Translatable CMS Object extension
@@ -14,13 +14,13 @@ use Winter\Translate\Models\Locale;
  *
  * In the CMS object class definition:
  *
- *   public $implement = ['@Winter.Translate.Behaviors.TranslatableCmsObject'];
+ *   public $implement = ['@Golem15.Translate.Behaviors.TranslatableCmsObject'];
  *
  *   public $translatable = ['title', 'markup'];
  *
- * This definition is optional and defaults to Winter\Translate\Classes\MLCmsObject
+ * This definition is optional and defaults to Golem15\Translate\Classes\MLCmsObject
  *
- *   public $translatableModel = 'Winter\Translate\Classes\MLStaticPage';
+ *   public $translatableModel = 'Golem15\Translate\Classes\MLStaticPage';
  *
  */
 class TranslatableCmsObject extends TranslatableBehavior

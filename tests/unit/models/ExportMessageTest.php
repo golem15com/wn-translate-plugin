@@ -1,10 +1,10 @@
-<?php namespace Winter\Translate\Tests\Unit\Models;
+<?php namespace Golem15\Translate\Tests\Unit\Models;
 
-use Winter\Translate\Models\Message;
-use Winter\Translate\Models\MessageExport;
-use Winter\Translate\Models\Locale;
+use Golem15\Translate\Models\Message;
+use Golem15\Translate\Models\MessageExport;
+use Golem15\Translate\Models\Locale;
 
-class ExportMessageTest extends \Winter\Translate\Tests\TranslatePluginTestCase
+class ExportMessageTest extends \Golem15\Translate\Tests\TranslatePluginTestCase
 {
 
     public function testCanHandleNoMessages()

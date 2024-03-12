@@ -1,4 +1,4 @@
-<?php namespace Winter\Translate\Tests\Fixtures\Classes;
+<?php namespace Golem15\Translate\Tests\Fixtures\Classes;
 
 use Cms\Classes\CmsCompoundObject;
 
@@ -7,7 +7,7 @@ use Cms\Classes\CmsCompoundObject;
  */
 class Feature extends CmsCompoundObject
 {
-    public $implement = ['@Winter.Translate.Behaviors.TranslatableCmsObject'];
+    public $implement = ['@Golem15.Translate.Behaviors.TranslatableCmsObject'];
 
     /**
      * @var array Attributes that support translation, if available.

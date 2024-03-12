@@ -1,6 +1,6 @@
 <?php
 
-namespace Winter\Translate\Classes;
+namespace Golem15\Translate\Classes;
 
 /**
  * Represents a multi-lingual Static Page object.

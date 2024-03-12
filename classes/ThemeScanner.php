@@ -1,6 +1,6 @@
 <?php
 
-namespace Winter\Translate\Classes;
+namespace Golem15\Translate\Classes;
 
 use Cms\Classes\Layout;
 use Cms\Classes\Page;
@@ -8,8 +8,8 @@ use Cms\Classes\Partial;
 use Cms\Classes\Theme;
 use Event;
 use System\Models\MailTemplate;
-use Winter\Translate\Classes\Translator;
-use Winter\Translate\Models\Message;
+use Golem15\Translate\Classes\Translator;
+use Golem15\Translate\Models\Message;
 
 /**
  * Theme scanner class
@@ -30,17 +30,17 @@ class ThemeScanner
         $obj->scanForMessages();
 
         /**
-         * @event winter.translate.themeScanner.afterScan
+         * @event golem15.translate.themeScanner.afterScan
          * Fires after theme scanning.
          *
          * Example usage:
          *
-         *     Event::listen('winter.translate.themeScanner.afterScan', function (ThemeScanner $scanner) {
+         *     Event::listen('golem15.translate.themeScanner.afterScan', function (ThemeScanner $scanner) {
          *         // added an extra scan. Add generation files...
          *     });
          *
          */
-        Event::fire('winter.translate.themeScanner.afterScan', [$obj]);
+        Event::fire('golem15.translate.themeScanner.afterScan', [$obj]);
     }
 
     /**

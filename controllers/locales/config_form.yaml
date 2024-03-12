@@ -2,6 +2,6 @@
 #  Form Behavior Config
 # ===================================
 
-form: ~/plugins/winter/translate/models/locale/fields.yaml
-modelClass: Winter\Translate\Models\Locale
-defaultRedirect: winter/translate/locales
+form: ~/plugins/golem15/translate/models/locale/fields.yaml
+modelClass: Golem15\Translate\Models\Locale
+defaultRedirect: golem15/translate/locales

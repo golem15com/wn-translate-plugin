@@ -1,14 +1,14 @@
-<?php namespace Winter\Translate\Tests\Unit\Behaviors;
+<?php namespace Golem15\Translate\Tests\Unit\Behaviors;
 
 use File;
 use Winter\Storm\Halcyon\Model;
 use Winter\Storm\Filesystem\Filesystem;
 use Winter\Storm\Halcyon\Datasource\FileDatasource;
 use Winter\Storm\Halcyon\Datasource\Resolver;
-use Winter\Translate\Tests\Fixtures\Classes\Feature as FeatureModel;
-use Winter\Translate\Models\Locale as LocaleModel;
+use Golem15\Translate\Tests\Fixtures\Classes\Feature as FeatureModel;
+use Golem15\Translate\Models\Locale as LocaleModel;
 
-class TranslatableCmsObjectTest extends \Winter\Translate\Tests\TranslatePluginTestCase
+class TranslatableCmsObjectTest extends \Golem15\Translate\Tests\TranslatePluginTestCase
 {
     public $themePath;
 

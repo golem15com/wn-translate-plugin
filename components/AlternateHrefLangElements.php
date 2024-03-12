@@ -1,20 +1,20 @@
 <?php
 
-namespace Winter\Translate\Components;
+namespace Golem15\Translate\Components;
 
 use Cms\Classes\ComponentBase;
 use Event;
 use Winter\Storm\Router\Router as RainRouter;
-use Winter\Translate\Classes\Translator;
-use Winter\Translate\Models\Locale as LocaleModel;
+use Golem15\Translate\Classes\Translator;
+use Golem15\Translate\Models\Locale as LocaleModel;
 
 class AlternateHrefLangElements extends ComponentBase
 {
     public function componentDetails(): array
     {
         return [
-            'name'        => 'winter.translate::lang.alternate_hreflang.component_name',
-            'description' => 'winter.translate::lang.alternate_hreflang.component_description'
+            'name'        => 'golem15.translate::lang.alternate_hreflang.component_name',
+            'description' => 'golem15.translate::lang.alternate_hreflang.component_description'
         ];
     }
 

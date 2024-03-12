@@ -1,9 +1,9 @@
-<?php namespace Winter\Translate\Updates;
+<?php namespace Golem15\Translate\Updates;
 
 use Illuminate\Support\Facades\Cache;
 use Schema;
 use Winter\Storm\Database\Updates\Migration;
-use Winter\Translate\Classes\Translator;
+use Golem15\Translate\Classes\Translator;
 
 class RenameTables extends Migration
 {

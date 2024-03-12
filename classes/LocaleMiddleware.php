@@ -1,10 +1,10 @@
 <?php
 
-namespace Winter\Translate\Classes;
+namespace Golem15\Translate\Classes;
 
 use Closure;
 use Config;
-use Winter\Translate\Classes\Translator;
+use Golem15\Translate\Classes\Translator;
 
 class LocaleMiddleware
 {
@@ -21,7 +21,7 @@ class LocaleMiddleware
         $translator->isConfigured();
 
         if (!$translator->loadLocaleFromRequest()) {
-            if (Config::get('winter.translate::prefixDefaultLocale')) {
+            if (Config::get('golem15.translate::prefixDefaultLocale')) {
                 $translator->loadLocaleFromSession();
             } else {
                 $translator->setLocale($translator->getDefaultLocale());

@@ -1,6 +1,6 @@
 <?php
 
-namespace Winter\Translate\Controllers;
+namespace Golem15\Translate\Controllers;
 
 use Backend\Behaviors\ImportExportController;
 use Backend\Classes\Controller;
@@ -9,10 +9,10 @@ use Flash;
 use Lang;
 use System\Classes\SettingsManager;
 use System\Helpers\Cache as CacheHelper;
-use Winter\Translate\Classes\ThemeScanner;
-use Winter\Translate\Models\Locale;
-use Winter\Translate\Models\Message;
-use Winter\Translate\Models\MessageExport;
+use Golem15\Translate\Classes\ThemeScanner;
+use Golem15\Translate\Models\Locale;
+use Golem15\Translate\Models\Message;
+use Golem15\Translate\Models\MessageExport;
 
 /**
  * Messages Backend Controller
@@ -23,7 +23,7 @@ class Messages extends Controller
         ImportExportController::class,
     ];
 
-    public $requiredPermissions = ['winter.translate.manage_messages'];
+    public $requiredPermissions = ['golem15.translate.manage_messages'];
 
     protected $hideTranslated = false;
 
@@ -32,10 +32,10 @@ class Messages extends Controller
         parent::__construct();
 
         BackendMenu::setContext('Winter.System', 'system', 'settings');
-        SettingsManager::setContext('Winter.Translate', 'messages');
+        SettingsManager::setContext('Golem15.Translate', 'messages');
 
-        $this->addJs('/plugins/winter/translate/assets/js/messages.js');
-        $this->addCss('/plugins/winter/translate/assets/css/messages.css');
+        $this->addJs('/plugins/golem15/translate/assets/js/messages.js');
+        $this->addCss('/plugins/golem15/translate/assets/css/messages.css');
 
         $this->importColumns = MessageExport::getColumns();
         $this->exportColumns = MessageExport::getColumns();
@@ -44,7 +44,7 @@ class Messages extends Controller
     public function index()
     {
         $this->bodyClass = 'slim-container breadcrumb-flush';
-        $this->pageTitle = 'winter.translate::lang.messages.title';
+        $this->pageTitle = 'golem15.translate::lang.messages.title';
         $this->prepareTable();
     }
 
@@ -58,7 +58,7 @@ class Messages extends Controller
     {
         CacheHelper::clear();
 
-        Flash::success(Lang::get('winter.translate::lang.messages.clear_cache_success'));
+        Flash::success(Lang::get('golem15.translate::lang.messages.clear_cache_success'));
     }
 
     public function onLoadScanMessagesForm()
@@ -78,7 +78,7 @@ class Messages extends Controller
             Message::where('found', 0)->delete();
         }
 
-        Flash::success(Lang::get('winter.translate::lang.messages.scan_messages_success'));
+        Flash::success(Lang::get('golem15.translate::lang.messages.scan_messages_success'));
 
         return $this->onRefresh();
     }
@@ -202,7 +202,7 @@ class Messages extends Controller
                 'code' => $message->code,
                 'from' => $message->forLocale($fromCode),
                 'to' => $toContent,
-                'found' => $message->found ? '' : Lang::get('winter.translate::lang.messages.not_found'),
+                'found' => $message->found ? '' : Lang::get('golem15.translate::lang.messages.not_found'),
             ];
         }
 

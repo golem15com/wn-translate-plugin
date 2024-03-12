@@ -1,9 +1,9 @@
 <?php
 
-namespace Winter\Translate\Behaviors;
+namespace Golem15\Translate\Behaviors;
 
 use App;
-use Winter\Translate\Classes\TranslatableBehavior;
+use Golem15\Translate\Classes\TranslatableBehavior;
 
 /**
  * Translatable page model extension
@@ -12,7 +12,7 @@ use Winter\Translate\Classes\TranslatableBehavior;
  *
  * In the model class definition:
  *
- *   public $implement = ['@Winter.Translate.Behaviors.TranslatablePage'];
+ *   public $implement = ['@Golem15.Translate.Behaviors.TranslatablePage'];
  *
  *   public $translatable = ['title', 'description'];
  *

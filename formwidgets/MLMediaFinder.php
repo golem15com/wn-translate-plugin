@@ -1,10 +1,10 @@
 <?php
 
-namespace Winter\Translate\FormWidgets;
+namespace Golem15\Translate\FormWidgets;
 
 use Backend\FormWidgets\MediaFinder;
 use System\Classes\MediaLibrary;
-use Winter\Translate\Models\Locale;
+use Golem15\Translate\Models\Locale;
 
 /**
  * ML MediaFinder Form Widget
@@ -15,7 +15,7 @@ use Winter\Translate\Models\Locale;
  */
 class MLMediaFinder extends MediaFinder
 {
-    use \Winter\Translate\Traits\MLControl;
+    use \Golem15\Translate\Traits\MLControl;
 
     /**
      * @inheritDoc

@@ -1,10 +1,10 @@
-<?php namespace Winter\Translate\Tests\Unit;
+<?php namespace Golem15\Translate\Tests\Unit;
 
 use Event;
 use Backend\Widgets\Form;
 use Winter\Storm\Database\Model;
 
-class EventRegistryTest extends \Winter\Translate\Tests\TranslatePluginTestCase
+class EventRegistryTest extends \Golem15\Translate\Tests\TranslatePluginTestCase
 {
     public function testRegisterModelTranslation()
     {
@@ -47,7 +47,7 @@ class EventRegistryTest extends \Winter\Translate\Tests\TranslatePluginTestCase
 class FormTestModel extends Model
 {
     public $implement = [
-        'Winter.Translate.Behaviors.TranslatableModel',
+        'Golem15.Translate.Behaviors.TranslatableModel',
     ];
 
     public $translatable = [];

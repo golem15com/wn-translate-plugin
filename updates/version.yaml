@@ -86,7 +86,7 @@
     - Fix regex when "|_" filter is followed by another filter
     - Try locale without country before returning default translation
     - Allow exporting default locale
-    - Fire 'winter.translate.themeScanner.afterScan' event in the theme scanner for extendability
+    - Fire 'golem15.translate.themeScanner.afterScan' event in the theme scanner for extendability
 "1.7.3":
     - Make plugin ready for Laravel 6 update
     - Add support for translating Winter.Pages MenuItem properties (requires Winter.Pages v1.3.6)
@@ -104,7 +104,7 @@
 "1.8.1": Minor bugfix
 "1.8.2": Fixes translated file models and theme data for v2.0. The parent model must implement translatable behavior for their related file models to be translated.
 "2.0.0":
-    - Rebrand to Winter.Translate
+    - Rebrand to Golem15.Translate
     - Fix location for dropdown-to in css file
     - v2.0.0/rename_tables.php
 "2.0.1":

@@ -1,13 +1,13 @@
-<?php namespace Winter\Translate\Tests\Unit\Behaviors;
+<?php namespace Golem15\Translate\Tests\Unit\Behaviors;
 
 use Model;
 use Schema;
-use Winter\Translate\Classes\Translator;
-use Winter\Translate\Tests\Fixtures\Models\Country as CountryModel;
-use Winter\Translate\Models\Locale as LocaleModel;
+use Golem15\Translate\Classes\Translator;
+use Golem15\Translate\Tests\Fixtures\Models\Country as CountryModel;
+use Golem15\Translate\Models\Locale as LocaleModel;
 use Winter\Storm\Database\Relations\Relation;
 
-class TranslatableModelTest extends \Winter\Translate\Tests\TranslatePluginTestCase
+class TranslatableModelTest extends \Golem15\Translate\Tests\TranslatePluginTestCase
 {
     public function setUp(): void
     {

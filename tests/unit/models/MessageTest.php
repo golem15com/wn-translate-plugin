@@ -1,8 +1,8 @@
-<?php namespace Winter\Translate\Tests\Unit\Models;
+<?php namespace Golem15\Translate\Tests\Unit\Models;
 
-use Winter\Translate\Models\Message;
+use Golem15\Translate\Models\Message;
 
-class MessageTest extends \Winter\Translate\Tests\TranslatePluginTestCase
+class MessageTest extends \Golem15\Translate\Tests\TranslatePluginTestCase
 {
     public function testImportMessages()
     {

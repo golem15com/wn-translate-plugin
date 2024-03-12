@@ -1,9 +1,9 @@
 <?php
 
-namespace Winter\Translate\FormWidgets;
+namespace Golem15\Translate\FormWidgets;
 
 use Backend\FormWidgets\RichEditor;
-use Winter\Translate\Models\Locale;
+use Golem15\Translate\Models\Locale;
 
 /**
  * ML Rich Editor
@@ -14,7 +14,7 @@ use Winter\Translate\Models\Locale;
  */
 class MLRichEditor extends RichEditor
 {
-    use \Winter\Translate\Traits\MLControl;
+    use \Golem15\Translate\Traits\MLControl;
 
     /**
      * {@inheritDoc}

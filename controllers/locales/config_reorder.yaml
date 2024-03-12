@@ -3,13 +3,13 @@
 # ===================================
 
 # Reorder Title
-title: winter.translate::lang.locale.reorder_title
+title: golem15.translate::lang.locale.reorder_title
 
 # Attribute name
 nameFrom: name
 
 # Model Class name
-modelClass: Winter\Translate\Models\Locale
+modelClass: Golem15\Translate\Models\Locale
 
 # Toolbar widget configuration
 toolbar:

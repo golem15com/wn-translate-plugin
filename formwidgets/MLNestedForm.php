@@ -1,7 +1,7 @@
-<?php namespace Winter\Translate\FormWidgets;
+<?php namespace Golem15\Translate\FormWidgets;
 
 use Backend\FormWidgets\NestedForm;
-use Winter\Translate\Models\Locale;
+use Golem15\Translate\Models\Locale;
 use Winter\Storm\Html\Helper as HtmlHelper;
 use ApplicationException;
 use Request;
@@ -14,7 +14,7 @@ use Request;
  */
 class MLNestedForm extends NestedForm
 {
-    use \Winter\Translate\Traits\MLControl;
+    use \Golem15\Translate\Traits\MLControl;
 
     /**
      * {@inheritDoc}

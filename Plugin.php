@@ -1,6 +1,6 @@
 <?php
 
-namespace Winter\Translate;
+namespace Golem15\Translate;
 
 use Backend;
 use Backend\Models\UserRole;
@@ -19,11 +19,11 @@ use System\Models\File;
 use System\Models\MailTemplate;
 use Winter\Sitemap\Classes\DefinitionItem;
 use Winter\Sitemap\Models\Definition;
-use Winter\Translate\Classes\EventRegistry;
-use Winter\Translate\Classes\MLPage;
-use Winter\Translate\Classes\Translator;
-use Winter\Translate\Models\Locale;
-use Winter\Translate\Models\Message;
+use Golem15\Translate\Classes\EventRegistry;
+use Golem15\Translate\Classes\MLPage;
+use Golem15\Translate\Classes\Translator;
+use Golem15\Translate\Models\Locale;
+use Golem15\Translate\Models\Message;
 
 /**
  * Translate Plugin Information File
@@ -36,11 +36,11 @@ class Plugin extends PluginBase
     public function pluginDetails(): array
     {
         return [
-            'name'        => 'winter.translate::lang.plugin.name',
-            'description' => 'winter.translate::lang.plugin.description',
+            'name'        => 'golem15.translate::lang.plugin.name',
+            'description' => 'golem15.translate::lang.plugin.description',
             'author'      => 'Winter CMS',
             'icon'        => 'icon-language',
-            'homepage'    => 'https://github.com/wintercms/wn-translate-plugin',
+            'homepage'    => 'https://github.com/golem15/wn-translate-plugin',
             'replaces'    => ['RainLab.Translate' => '<= 1.9.0'],
         ];
     }
@@ -51,8 +51,8 @@ class Plugin extends PluginBase
     public function registerComponents(): array
     {
         return [
-           \Winter\Translate\Components\LocalePicker::class => 'localePicker',
-           \Winter\Translate\Components\AlternateHrefLangElements::class => 'alternateHrefLangElements'
+           \Golem15\Translate\Components\LocalePicker::class => 'localePicker',
+           \Golem15\Translate\Components\AlternateHrefLangElements::class => 'alternateHrefLangElements'
         ];
     }
 
@@ -62,14 +62,14 @@ class Plugin extends PluginBase
     public function registerPermissions(): array
     {
         return [
-            'winter.translate.manage_locales'  => [
-                'tab'   => 'winter.translate::lang.plugin.tab',
-                'label' => 'winter.translate::lang.plugin.manage_locales',
+            'golem15.translate.manage_locales'  => [
+                'tab'   => 'golem15.translate::lang.plugin.tab',
+                'label' => 'golem15.translate::lang.plugin.manage_locales',
                 'roles' => [UserRole::CODE_DEVELOPER],
             ],
-            'winter.translate.manage_messages' => [
-                'tab'   => 'winter.translate::lang.plugin.tab',
-                'label' => 'winter.translate::lang.plugin.manage_messages',
+            'golem15.translate.manage_messages' => [
+                'tab'   => 'golem15.translate::lang.plugin.tab',
+                'label' => 'golem15.translate::lang.plugin.manage_messages',
                 'roles' => [UserRole::CODE_DEVELOPER, UserRole::CODE_PUBLISHER],
             ]
         ];
@@ -82,22 +82,22 @@ class Plugin extends PluginBase
     {
         return [
             'locales' => [
-                'label'       => 'winter.translate::lang.locale.title',
-                'description' => 'winter.translate::lang.plugin.description',
+                'label'       => 'golem15.translate::lang.locale.title',
+                'description' => 'golem15.translate::lang.plugin.description',
                 'icon'        => 'icon-language',
-                'url'         => Backend::url('winter/translate/locales'),
+                'url'         => Backend::url('golem15/translate/locales'),
                 'order'       => 550,
-                'category'    => 'winter.translate::lang.plugin.name',
-                'permissions' => ['winter.translate.manage_locales']
+                'category'    => 'golem15.translate::lang.plugin.name',
+                'permissions' => ['golem15.translate.manage_locales']
             ],
             'messages' => [
-                'label'       => 'winter.translate::lang.messages.title',
-                'description' => 'winter.translate::lang.messages.description',
+                'label'       => 'golem15.translate::lang.messages.title',
+                'description' => 'golem15.translate::lang.messages.description',
                 'icon'        => 'icon-list-alt',
-                'url'         => Backend::url('winter/translate/messages'),
+                'url'         => Backend::url('golem15/translate/messages'),
                 'order'       => 551,
-                'category'    => 'winter.translate::lang.plugin.name',
-                'permissions' => ['winter.translate.manage_messages']
+                'category'    => 'golem15.translate::lang.plugin.name',
+                'permissions' => ['golem15.translate.manage_messages']
             ]
         ];
     }
@@ -139,13 +139,13 @@ class Plugin extends PluginBase
     public function registerFormWidgets(): array
     {
         return [
-            \Winter\Translate\FormWidgets\MLText::class => 'mltext',
-            \Winter\Translate\FormWidgets\MLTextarea::class => 'mltextarea',
-            \Winter\Translate\FormWidgets\MLRichEditor::class => 'mlricheditor',
-            \Winter\Translate\FormWidgets\MLMarkdownEditor::class => 'mlmarkdowneditor',
-            \Winter\Translate\FormWidgets\MLRepeater::class => 'mlrepeater',
-            \Winter\Translate\FormWidgets\MLMediaFinder::class => 'mlmediafinder',
-            \Winter\Translate\FormWidgets\MLNestedForm::class => 'mlnestedform',
+            \Golem15\Translate\FormWidgets\MLText::class => 'mltext',
+            \Golem15\Translate\FormWidgets\MLTextarea::class => 'mltextarea',
+            \Golem15\Translate\FormWidgets\MLRichEditor::class => 'mlricheditor',
+            \Golem15\Translate\FormWidgets\MLMarkdownEditor::class => 'mlmarkdowneditor',
+            \Golem15\Translate\FormWidgets\MLRepeater::class => 'mlrepeater',
+            \Golem15\Translate\FormWidgets\MLMediaFinder::class => 'mlmediafinder',
+            \Golem15\Translate\FormWidgets\MLNestedForm::class => 'mlnestedform',
         ];
     }
 
@@ -155,8 +155,8 @@ class Plugin extends PluginBase
     protected function registerAssetBundles()
     {
         CombineAssets::registerCallback(function ($combiner) {
-            $combiner->registerBundle('$/winter/translate/assets/less/messages.less');
-            $combiner->registerBundle('$/winter/translate/assets/less/multilingual.less');
+            $combiner->registerBundle('$/golem15/translate/assets/less/messages.less');
+            $combiner->registerBundle('$/golem15/translate/assets/less/multilingual.less');
         });
     }
 
@@ -168,7 +168,7 @@ class Plugin extends PluginBase
         /*
          * Register console commands
          */
-        $this->registerConsoleCommand('translate.scan', \Winter\Translate\Console\ScanCommand::class);
+        $this->registerConsoleCommand('translate.scan', \Golem15\Translate\Console\ScanCommand::class);
 
         $this->registerAssetBundles();
     }
@@ -225,7 +225,7 @@ class Plugin extends PluginBase
 
         // Look at session for locale using middleware
         \Cms\Classes\CmsController::extend(function($controller) {
-            $controller->middleware(\Winter\Translate\Classes\LocaleMiddleware::class);
+            $controller->middleware(\Golem15\Translate\Classes\LocaleMiddleware::class);
         });
 
         // Set the page context for translation caching with high priority.
@@ -407,15 +407,15 @@ class Plugin extends PluginBase
         }
 
         if ($type === 'page') {
-            if (!$model->isClassExtendedWith('Winter\Translate\Behaviors\TranslatablePageUrl')) {
-                $model->extendClassWith('Winter\Translate\Behaviors\TranslatablePageUrl');
+            if (!$model->isClassExtendedWith('Golem15\Translate\Behaviors\TranslatablePageUrl')) {
+                $model->extendClassWith('Golem15\Translate\Behaviors\TranslatablePageUrl');
             }
-            if (!$model->isClassExtendedWith('Winter\Translate\Behaviors\TranslatablePage')) {
-                $model->extendClassWith('Winter\Translate\Behaviors\TranslatablePage');
+            if (!$model->isClassExtendedWith('Golem15\Translate\Behaviors\TranslatablePage')) {
+                $model->extendClassWith('Golem15\Translate\Behaviors\TranslatablePage');
             }
         } elseif ($type === 'model') {
-            if (!$model->isClassExtendedWith('Winter\Translate\Behaviors\TranslatableModel')) {
-                $model->extendClassWith('Winter\Translate\Behaviors\TranslatableModel');
+            if (!$model->isClassExtendedWith('Golem15\Translate\Behaviors\TranslatableModel')) {
+                $model->extendClassWith('Golem15\Translate\Behaviors\TranslatableModel');
             }
         }
     }

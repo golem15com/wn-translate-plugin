@@ -1,6 +1,6 @@
 <?php
 
-namespace Winter\Translate\Models;
+namespace Golem15\Translate\Models;
 
 use App;
 use ApplicationException;
@@ -63,7 +63,7 @@ class Locale extends Model
     public function beforeDelete()
     {
         if ($this->is_default) {
-            throw new ApplicationException(Lang::get('winter.translate::lang.locale.delete_default', ['locale'=>$this->name]));
+            throw new ApplicationException(Lang::get('golem15.translate::lang.locale.delete_default', ['locale'=>$this->name]));
         }
     }
 
@@ -73,7 +73,7 @@ class Locale extends Model
             $this->makeDefault();
 
             if (!$this->is_default) {
-                throw new ValidationException(['is_default' => Lang::get('winter.translate::lang.locale.unset_default', ['locale'=>$this->name])]);
+                throw new ValidationException(['is_default' => Lang::get('golem15.translate::lang.locale.unset_default', ['locale'=>$this->name])]);
             }
         }
     }
@@ -85,7 +85,7 @@ class Locale extends Model
     public function makeDefault()
     {
         if (!$this->is_enabled) {
-            throw new ValidationException(['is_enabled' => Lang::get('winter.translate::lang.locale.disabled_default', ['locale'=>$this->name])]);
+            throw new ValidationException(['is_enabled' => Lang::get('golem15.translate::lang.locale.disabled_default', ['locale'=>$this->name])]);
         }
 
         $this->newQuery()->where('id', $this->id)->update(['is_default' => true]);
@@ -102,7 +102,7 @@ class Locale extends Model
             return self::$defaultLocale;
         }
 
-        $forceDefault = Config::get('winter.translate::forceDefaultLocale');
+        $forceDefault = Config::get('golem15.translate::forceDefaultLocale');
         if (!$forceDefault && !App::hasDatabase()) {
             // If a database is not available, the default locale is always the app locale
             $forceDefault = Config::get('app.locale');
@@ -116,7 +116,7 @@ class Locale extends Model
         }
 
         return self::$defaultLocale = self::where('is_default', true)
-            ->remember(1440, 'winter.translate.defaultLocale')
+            ->remember(1440, 'golem15.translate.defaultLocale')
             ->first()
         ;
     }
@@ -197,7 +197,7 @@ class Locale extends Model
         }
 
         $expiresAt = now()->addMinutes(1440);
-        $isEnabled = Cache::remember('winter.translate.locales', $expiresAt, function() {
+        $isEnabled = Cache::remember('golem15.translate.locales', $expiresAt, function() {
             return self::isEnabled()->order()->pluck('name', 'code')->all();
         });
 
@@ -221,7 +221,7 @@ class Locale extends Model
      */
     public static function clearCache()
     {
-        Cache::forget('winter.translate.locales');
-        Cache::forget('winter.translate.defaultLocale');
+        Cache::forget('golem15.translate.locales');
+        Cache::forget('golem15.translate.defaultLocale');
     }
 }

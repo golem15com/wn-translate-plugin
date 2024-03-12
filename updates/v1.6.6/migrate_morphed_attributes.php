@@ -1,9 +1,9 @@
-<?php namespace Winter\Translate\Updates;
+<?php namespace Golem15\Translate\Updates;
 
 use Db;
 use Winter\Storm\Database\Relations\Relation;
 use Winter\Storm\Database\Updates\Migration;
-use Winter\Translate\Models\Attribute;
+use Golem15\Translate\Models\Attribute;
 
 /**
  * Because attributes are loaded using a proper morphMany relation starting from version 1.6.3,

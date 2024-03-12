@@ -123,11 +123,11 @@ In order to make these default values reflected to your frontend site, go to **S
 The same operation can be performed with the `translate:scan` artisan command. It may be worth including it in a deployment script to automatically fetch updated messages:
 
     php artisan translate:scan
-    
+
 Add the `--purge` option to clear old messages first:
-    
+
     php artisan translate:scan --purge
-    
+
 ## Content translation
 
 This plugin activates a feature in the CMS that allows content files to use language suffixes, for example:
@@ -187,11 +187,11 @@ public function boot() {
 ```
 ## Model translation
 
-Models can have their attributes translated by using the `Winter.Translate.Behaviors.TranslatableModel` behavior and specifying which attributes to translate in the class.
+Models can have their attributes translated by using the `Golem15.Translate.Behaviors.TranslatableModel` behavior and specifying which attributes to translate in the class.
 
     class User
     {
-        public $implement = ['Winter.Translate.Behaviors.TranslatableModel'];
+        public $implement = ['Golem15.Translate.Behaviors.TranslatableModel'];
 
         public $translatable = ['name'];
     }
@@ -236,7 +236,7 @@ There are ways to get and set attributes without changing the context.
 
     // Sets a single translated attribute for a language
     $user->setAttributeTranslated('name', 'Jean-Claude', 'fr');
-    
+
 ## Theme data translation
 
 It is also possible to translate theme customisation options. Just mark your form fields with `translatable` property and the plugin will take care about everything else:
@@ -248,7 +248,7 @@ It is also possible to translate theme customisation options. Just mark your for
           label: Website Name
           type: text
           default: Your website name
-          translatable: true    
+          translatable: true
 
 ## Fallback attribute values
 
@@ -340,7 +340,7 @@ For a possible implementation of the `YourModel::translateParams` method look at
 
 ## Extend theme scan
 
-      Event::listen('winter.translate.themeScanner.afterScan', function (ThemeScanner $scanner) {
+      Event::listen('golem15.translate.themeScanner.afterScan', function (ThemeScanner $scanner) {
            ...
       });
 
@@ -367,7 +367,7 @@ It is possible to conditionally extend a plugin's models to support translation 
         /**
          * Softly implement the TranslatableModel behavior.
          */
-        public $implement = ['@Winter.Translate.Behaviors.TranslatableModel'];
+        public $implement = ['@Golem15.Translate.Behaviors.TranslatableModel'];
 
         /**
          * @var array Attributes that support translation, if available.
@@ -391,7 +391,7 @@ Since the Twig filter will not be available all the time, we can pipe them to th
     public function registerMarkupTags()
     {
         // Check the translate plugin is installed
-        if (!class_exists('Winter\Translate\Behaviors\TranslatableModel'))
+        if (!class_exists('Golem15\Translate\Behaviors\TranslatableModel'))
             return;
 
         return [

@@ -1,4 +1,4 @@
-<?php namespace Winter\Translate\Updates;
+<?php namespace Golem15\Translate\Updates;
 
 use Schema;
 use Winter\Storm\Database\Updates\Migration;

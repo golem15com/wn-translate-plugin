@@ -1,11 +1,11 @@
-<?php namespace Winter\Translate\Updates;
+<?php namespace Golem15\Translate\Updates;
 
 use Config;
 use Schema;
 use Str;
 use Winter\Storm\Database\Updates\Migration;
-use Winter\Translate\Classes\ThemeScanner;
-use Winter\Translate\Models\Message;
+use Golem15\Translate\Classes\ThemeScanner;
+use Golem15\Translate\Models\Message;
 
 class MigrateMessageCode extends Migration
 {

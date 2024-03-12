@@ -1,11 +1,11 @@
 <?php
 
-namespace Winter\Translate\Controllers;
+namespace Golem15\Translate\Controllers;
 
 use BackendMenu;
 use Backend\Classes\Controller;
 use System\Classes\SettingsManager;
-use Winter\Translate\Models\Locale as LocaleModel;
+use Golem15\Translate\Models\Locale as LocaleModel;
 
 /**
  * Locales Backend Controller
@@ -18,16 +18,16 @@ class Locales extends Controller
         \Backend\Behaviors\ReorderController::class,
     ];
 
-    public $requiredPermissions = ['winter.translate.manage_locales'];
+    public $requiredPermissions = ['golem15.translate.manage_locales'];
 
     public function __construct()
     {
         parent::__construct();
 
         BackendMenu::setContext('Winter.System', 'system', 'settings');
-        SettingsManager::setContext('Winter.Translate', 'locales');
+        SettingsManager::setContext('Golem15.Translate', 'locales');
 
-        $this->addJs('/plugins/winter/translate/assets/js/locales.js');
+        $this->addJs('/plugins/golem15/translate/assets/js/locales.js');
     }
 
     /**

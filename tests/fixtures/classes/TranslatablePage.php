@@ -1,4 +1,4 @@
-<?php namespace Winter\Translate\Tests\Fixtures\Classes;
+<?php namespace Golem15\Translate\Tests\Fixtures\Classes;
 
 use Cms\Classes\Page;
 

@@ -1,6 +1,6 @@
 <?php
 
-namespace Winter\Translate\Components;
+namespace Golem15\Translate\Components;
 
 use Cms\Classes\ComponentBase;
 use Config;
@@ -8,13 +8,13 @@ use Event;
 use Redirect;
 use Request;
 use Winter\Storm\Router\Router as RainRouter;
-use Winter\Translate\Classes\Translator;
-use Winter\Translate\Models\Locale as LocaleModel;
+use Golem15\Translate\Classes\Translator;
+use Golem15\Translate\Models\Locale as LocaleModel;
 
 class LocalePicker extends ComponentBase
 {
     /**
-     * @var Winter\Translate\Classes\Translator Translator object.
+     * @var Golem15\Translate\Classes\Translator Translator object.
      */
     protected $translator;
 
@@ -41,8 +41,8 @@ class LocalePicker extends ComponentBase
     public function componentDetails(): array
     {
         return [
-            'name'        => 'winter.translate::lang.locale_picker.component_name',
-            'description' => 'winter.translate::lang.locale_picker.component_description',
+            'name'        => 'golem15.translate::lang.locale_picker.component_name',
+            'description' => 'golem15.translate::lang.locale_picker.component_description',
         ];
     }
 
@@ -103,7 +103,7 @@ class LocalePicker extends ComponentBase
             return;
         }
 
-        $prefixDefaultLocale = Config::get('winter.translate::prefixDefaultLocale');
+        $prefixDefaultLocale = Config::get('golem15.translate::prefixDefaultLocale');
         $locale = $this->translator->getLocale(false)
             ?: $this->translator->getDefaultLocale();
 

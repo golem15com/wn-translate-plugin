@@ -1,10 +1,10 @@
 <?php
 
-namespace Winter\Translate\Behaviors;
+namespace Golem15\Translate\Behaviors;
 
 use App;
 use Winter\Storm\Extension\ExtensionBase;
-use Winter\Translate\Classes\Translator;
+use Golem15\Translate\Classes\Translator;
 
 /**
  * Translatable page URL model extension
@@ -13,7 +13,7 @@ use Winter\Translate\Classes\Translator;
  *
  * In the model class definition:
  *
- *   public $implement = ['@Winter.Translate.Behaviors.TranslatablePageUrl'];
+ *   public $implement = ['@Golem15.Translate.Behaviors.TranslatablePageUrl'];
  *
  */
 class TranslatablePageUrl extends ExtensionBase

@@ -1,14 +1,14 @@
-<?php namespace Winter\Translate\Tests\Unit\Behaviors;
+<?php namespace Golem15\Translate\Tests\Unit\Behaviors;
 
 use File;
 use Winter\Storm\Halcyon\Model;
 use Winter\Storm\Filesystem\Filesystem;
 use Winter\Storm\Halcyon\Datasource\FileDatasource;
 use Winter\Storm\Halcyon\Datasource\Resolver;
-use Winter\Translate\Tests\Fixtures\Classes\MessageScanner;
-use Winter\Translate\Tests\Fixtures\Classes\TranslatablePage;
+use Golem15\Translate\Tests\Fixtures\Classes\MessageScanner;
+use Golem15\Translate\Tests\Fixtures\Classes\TranslatablePage;
 
-class TranslatablePageTest extends \Winter\Translate\Tests\TranslatePluginTestCase
+class TranslatablePageTest extends \Golem15\Translate\Tests\TranslatePluginTestCase
 {
     public $themePath;
 
@@ -24,9 +24,9 @@ class TranslatablePageTest extends \Winter\Translate\Tests\TranslatePluginTestCa
         Model::setDatasourceResolver($resolver);
 
         TranslatablePage::extend(function($page) {
-            if (!$page->isClassExtendedWith('Winter\Translate\Behaviors\TranslatablePage')) {
+            if (!$page->isClassExtendedWith('Golem15\Translate\Behaviors\TranslatablePage')) {
                 $page->addDynamicProperty('translatable', ['title']);
-                $page->extendClassWith('Winter\Translate\Behaviors\TranslatablePage');
+                $page->extendClassWith('Golem15\Translate\Behaviors\TranslatablePage');
             }
         });
 

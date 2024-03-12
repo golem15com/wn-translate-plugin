@@ -1,6 +1,6 @@
 <?php
 
-namespace Winter\Translate\Classes;
+namespace Golem15\Translate\Classes;
 
 use App;
 use Cms\Classes\Content;
@@ -10,10 +10,10 @@ use File;
 use Str;
 use System\Classes\MailManager;
 use System\Classes\PluginManager;
-use Winter\Translate\Classes\ThemeScanner;
-use Winter\Translate\Classes\Translator;
-use Winter\Translate\Models\Locale as LocaleModel;
-use Winter\Translate\Models\Message;
+use Golem15\Translate\Classes\ThemeScanner;
+use Golem15\Translate\Classes\Translator;
+use Golem15\Translate\Models\Locale as LocaleModel;
+use Golem15\Translate\Models\Message;
 
 /**
  * Registrant class for bootstrapping events
@@ -120,9 +120,9 @@ class EventRegistry
         }
 
         if (
-            !$model->isClassExtendedWith('Winter.Translate.Behaviors.TranslatableModel') &&
-            !$model->isClassExtendedWith('Winter.Translate.Behaviors.TranslatablePage') &&
-            !$model->isClassExtendedWith('Winter.Translate.Behaviors.TranslatableCmsObject')
+            !$model->isClassExtendedWith('Golem15.Translate.Behaviors.TranslatableModel') &&
+            !$model->isClassExtendedWith('Golem15.Translate.Behaviors.TranslatablePage') &&
+            !$model->isClassExtendedWith('Golem15.Translate.Behaviors.TranslatableCmsObject')
         ) {
             return;
         }

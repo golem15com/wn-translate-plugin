@@ -1,14 +1,14 @@
 <?php
 
 use Illuminate\Foundation\Application as Laravel;
-use Winter\Translate\Classes\Translator;
-use Winter\Translate\Models\Message;
+use Golem15\Translate\Classes\Translator;
+use Golem15\Translate\Models\Message;
 
 /*
  * Adds a custom route to check for the locale prefix.
  */
 $beforeCallback = function () {
-    if (Config::get('winter.translate::disableLocalePrefixRoutes', false)) {
+    if (Config::get('golem15.translate::disableLocalePrefixRoutes', false)) {
         return;
     }
 
@@ -56,7 +56,7 @@ if (version_compare(Laravel::VERSION, '9.0.0', '>=')) {
  * Save any used messages to the contextual cache.
  */
 App::after(function () {
-    if (class_exists('Winter\Translate\Models\Message')) {
+    if (class_exists('Golem15\Translate\Models\Message')) {
         Message::saveToCache();
     }
 });

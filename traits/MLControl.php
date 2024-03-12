@@ -1,10 +1,10 @@
 <?php
 
-namespace Winter\Translate\Traits;
+namespace Golem15\Translate\Traits;
 
 use Str;
 use Winter\Storm\Html\Helper as HtmlHelper;
-use Winter\Translate\Models\Locale;
+use Golem15\Translate\Models\Locale;
 
 /**
  * Generic ML Control
@@ -31,7 +31,7 @@ trait MLControl
     public $originalViewPath;
 
     /**
-     * @var Winter\Translate\Models\Locale Object
+     * @var Golem15\Translate\Models\Locale Object
      */
     protected $defaultLocale;
 
@@ -133,8 +133,8 @@ trait MLControl
      */
     public function loadLocaleAssets()
     {
-        $this->addJs('/plugins/winter/translate/assets/js/multilingual.js', 'Winter.Translate');
-        $this->addCss('/plugins/winter/translate/assets/css/multilingual.css', 'Winter.Translate');
+        $this->addJs('/plugins/golem15/translate/assets/js/multilingual.js', 'Golem15.Translate');
+        $this->addCss('/plugins/golem15/translate/assets/css/multilingual.css', 'Golem15.Translate');
     }
 
     /**

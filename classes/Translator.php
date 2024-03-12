@@ -1,6 +1,6 @@
 <?php
 
-namespace Winter\Translate\Classes;
+namespace Golem15\Translate\Classes;
 
 use App;
 use Cache;
@@ -8,7 +8,7 @@ use Config;
 use Request;
 use Schema;
 use Session;
-use Winter\Translate\Models\Locale;
+use Golem15\Translate\Models\Locale;
 
 /**
  * Translate class
@@ -20,9 +20,9 @@ class Translator
 {
     use \Winter\Storm\Support\Traits\Singleton;
 
-    const SESSION_LOCALE = 'winter.translate.locale';
+    const SESSION_LOCALE = 'golem15.translate.locale';
 
-    const SESSION_CONFIGURED = 'winter.translate.configured';
+    const SESSION_CONFIGURED = 'golem15.translate.configured';
 
     /**
      * @var string The locale to use on the front end.
@@ -160,7 +160,7 @@ class Translator
     public function getPathInLocale($path, $locale = null, $prefixDefaultLocale = null)
     {
         $prefixDefaultLocale = (is_null($prefixDefaultLocale))
-            ? Config::get('winter.translate::prefixDefaultLocale')
+            ? Config::get('golem15.translate::prefixDefaultLocale')
             : $prefixDefaultLocale;
 
         $segments = explode('/', $path);

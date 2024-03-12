@@ -1,12 +1,12 @@
 <?php
 
-namespace Winter\Translate\Classes;
+namespace Golem15\Translate\Classes;
 
 use Cms\Classes\Page as CmsPage;
 use Cms\Classes\Theme;
 use Url;
 use Winter\Storm\Router\Router;
-use Winter\Translate\Models\Locale;
+use Golem15\Translate\Models\Locale;
 
 class MLPage
 {

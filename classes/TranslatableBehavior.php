@@ -1,11 +1,11 @@
 <?php
 
-namespace Winter\Translate\Classes;
+namespace Golem15\Translate\Classes;
 
 use Str;
 use Winter\Storm\Extension\ExtensionBase;
 use Winter\Storm\Html\Helper as HtmlHelper;
-use Winter\Translate\Classes\Translator;
+use Golem15\Translate\Classes\Translator;
 
 /**
  * Base class for model behaviors.

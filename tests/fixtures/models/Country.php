@@ -1,4 +1,4 @@
-<?php namespace Winter\Translate\Tests\Fixtures\Models;
+<?php namespace Golem15\Translate\Tests\Fixtures\Models;
 
 use Model;
 
@@ -7,7 +7,7 @@ use Model;
  */
 class Country extends Model
 {
-    public $implement = ['@Winter.Translate.Behaviors.TranslatableModel'];
+    public $implement = ['@Golem15.Translate.Behaviors.TranslatableModel'];
 
     public $translatable = [['name', 'index' => true], 'states'];
 

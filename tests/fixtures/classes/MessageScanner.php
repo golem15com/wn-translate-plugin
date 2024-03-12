@@ -1,6 +1,6 @@
-<?php namespace Winter\Translate\Tests\Fixtures\Classes;
+<?php namespace Golem15\Translate\Tests\Fixtures\Classes;
 
-use Winter\Translate\Classes\ThemeScanner;
+use Golem15\Translate\Classes\ThemeScanner;
 
 class MessageScanner extends ThemeScanner
 {

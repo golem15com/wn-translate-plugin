@@ -1,6 +1,6 @@
 <?php
 
-namespace Winter\Translate\Models;
+namespace Golem15\Translate\Models;
 
 use Backend\Models\ExportModel;
 

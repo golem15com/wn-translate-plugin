@@ -1,12 +1,12 @@
 <?php
 
-namespace Winter\Translate\FormWidgets;
+namespace Golem15\Translate\FormWidgets;
 
 use ApplicationException;
 use Backend\FormWidgets\Repeater;
 use Request;
 use Winter\Storm\Html\Helper as HtmlHelper;
-use Winter\Translate\Models\Locale;
+use Golem15\Translate\Models\Locale;
 
 /**
  * ML Repeater
@@ -17,7 +17,7 @@ use Winter\Translate\Models\Locale;
  */
 class MLRepeater extends Repeater
 {
-    use \Winter\Translate\Traits\MLControl;
+    use \Golem15\Translate\Traits\MLControl;
 
     /**
      * {@inheritDoc}

@@ -1,7 +1,7 @@
-<?php namespace Winter\Translate\Updates;
+<?php namespace Golem15\Translate\Updates;
 
 use Winter\Storm\Database\Updates\Seeder;
-use Winter\Translate\Models\Locale;
+use Golem15\Translate\Models\Locale;
 
 class SeedAllTables extends Seeder
 {

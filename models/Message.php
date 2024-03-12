@@ -1,6 +1,6 @@
 <?php
 
-namespace Winter\Translate\Models;
+namespace Golem15\Translate\Models;
 
 use Cache;
 use Config;
@@ -276,7 +276,7 @@ class Message extends Model
             return;
         }
 
-        $expiresAt = now()->addMinutes(Config::get('winter.translate::cacheTimeout', 1440));
+        $expiresAt = now()->addMinutes(Config::get('golem15.translate::cacheTimeout', 1440));
         Cache::put(self::makeCacheKey(), self::$cache, $expiresAt);
     }
 

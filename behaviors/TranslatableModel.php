@@ -1,10 +1,10 @@
 <?php
 
-namespace Winter\Translate\Behaviors;
+namespace Golem15\Translate\Behaviors;
 
 use Db;
 use DbDongle;
-use Winter\Translate\Classes\TranslatableBehavior;
+use Golem15\Translate\Classes\TranslatableBehavior;
 
 /**
  * Translatable model extension
@@ -13,7 +13,7 @@ use Winter\Translate\Classes\TranslatableBehavior;
  *
  * In the model class definition:
  *
- *   public $implement = ['@Winter.Translate.Behaviors.TranslatableModel'];
+ *   public $implement = ['@Golem15.Translate.Behaviors.TranslatableModel'];
  *
  *   public $translatable = ['name', 'content'];
  *
@@ -25,7 +25,7 @@ class TranslatableModel extends TranslatableBehavior
         parent::__construct($model);
 
         $model->morphMany['translations'] = [
-            'Winter\Translate\Models\Attribute',
+            'Golem15\Translate\Models\Attribute',
             'name' => 'model'
         ];
     }

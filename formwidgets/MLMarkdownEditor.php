@@ -1,9 +1,9 @@
 <?php
 
-namespace Winter\Translate\FormWidgets;
+namespace Golem15\Translate\FormWidgets;
 
 use Backend\FormWidgets\MarkdownEditor;
-use Winter\Translate\Models\Locale;
+use Golem15\Translate\Models\Locale;
 
 /**
  * ML Markdown Editor
@@ -14,7 +14,7 @@ use Winter\Translate\Models\Locale;
  */
 class MLMarkdownEditor extends MarkdownEditor
 {
-    use \Winter\Translate\Traits\MLControl;
+    use \Golem15\Translate\Traits\MLControl;
 
     /**
      * {@inheritDoc}

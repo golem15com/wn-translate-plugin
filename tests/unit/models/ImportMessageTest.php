@@ -1,9 +1,9 @@
-<?php namespace Winter\Translate\Tests\Unit\Models;
+<?php namespace Golem15\Translate\Tests\Unit\Models;
 
-use Winter\Translate\Models\Message;
-use Winter\Translate\Models\MessageImport;
+use Golem15\Translate\Models\Message;
+use Golem15\Translate\Models\MessageImport;
 
-class ImportMessageTest extends \Winter\Translate\Tests\TranslatePluginTestCase
+class ImportMessageTest extends \Golem15\Translate\Tests\TranslatePluginTestCase
 {
     public function testCanHandleEmptyImport()
     {

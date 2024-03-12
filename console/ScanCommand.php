@@ -1,10 +1,10 @@
 <?php
 
-namespace Winter\Translate\Console;
+namespace Golem15\Translate\Console;
 
 use Illuminate\Console\Command;
-use Winter\Translate\Classes\ThemeScanner;
-use Winter\Translate\Models\Message;
+use Golem15\Translate\Classes\ThemeScanner;
+use Golem15\Translate\Models\Message;
 
 class ScanCommand extends Command
 {
