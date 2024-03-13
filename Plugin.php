@@ -10,6 +10,7 @@ use Cms\Models\ThemeData;
 use DOMDocument;
 use DOMElement;
 use Event;
+use Golem15\Translate\Console\PluginTranslate;
 use Lang;
 use Model;
 use System\Classes\CombineAssets;
@@ -139,13 +140,13 @@ class Plugin extends PluginBase
     public function registerFormWidgets(): array
     {
         return [
-            \Golem15\Translate\FormWidgets\MLText::class => 'mltext',
-            \Golem15\Translate\FormWidgets\MLTextarea::class => 'mltextarea',
-            \Golem15\Translate\FormWidgets\MLRichEditor::class => 'mlricheditor',
+            \Golem15\Translate\FormWidgets\MLText::class           => 'mltext',
+            \Golem15\Translate\FormWidgets\MLTextarea::class       => 'mltextarea',
+            \Golem15\Translate\FormWidgets\MLRichEditor::class     => 'mlricheditor',
             \Golem15\Translate\FormWidgets\MLMarkdownEditor::class => 'mlmarkdowneditor',
-            \Golem15\Translate\FormWidgets\MLRepeater::class => 'mlrepeater',
-            \Golem15\Translate\FormWidgets\MLMediaFinder::class => 'mlmediafinder',
-            \Golem15\Translate\FormWidgets\MLNestedForm::class => 'mlnestedform',
+            \Golem15\Translate\FormWidgets\MLRepeater::class       => 'mlrepeater',
+            \Golem15\Translate\FormWidgets\MLMediaFinder::class    => 'mlmediafinder',
+            \Golem15\Translate\FormWidgets\MLNestedForm::class     => 'mlnestedform',
         ];
     }
 
@@ -171,6 +172,9 @@ class Plugin extends PluginBase
         $this->registerConsoleCommand('translate.scan', \Golem15\Translate\Console\ScanCommand::class);
 
         $this->registerAssetBundles();
+        $this->commands([
+            PluginTranslate::class
+        ]);
     }
 
     /**

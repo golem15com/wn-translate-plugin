@@ -2,7 +2,7 @@
 
 namespace Golem15\Translate\FormWidgets;
 
-use Backend\FormWidgets\MarkdownEditor;
+use Backend\FormWidgets\SmartEditor;
 use Golem15\Translate\Models\Locale;
 
 /**
@@ -12,7 +12,7 @@ use Golem15\Translate\Models\Locale;
  * @package golem15\translate
  * @author Alexey Bobkov, Samuel Georges
  */
-class MLMarkdownEditor extends MarkdownEditor
+class MLMarkdownEditor extends SmartEditor
 {
     use \Golem15\Translate\Traits\MLControl;
 
