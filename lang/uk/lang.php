@@ -6,7 +6,7 @@ return [
         'description' => 'Робить сайти багатомовними.',
         'tab' => 'Переклад',
         'manage_locales' => 'Керування мовами',
-        'manage_messages' => 'Керування повідомленнями'
+        'manage_messages' => 'Керування повідомленнями',
     ],
     'locale_picker' => [
         'component_name' => 'Вибір мови',
@@ -14,7 +14,7 @@ return [
     ],
     'alternate_hreflang' => [
         'component_name' => 'Альтернативні елементи hrefLang',
-        'component_description' => 'Внедряє мовні альтернативи для сторінки в якості елементів hreflang'
+        'component_description' => 'Внедряє мовні альтернативи для сторінки в якості елементів hreflang',
     ],
     'locale' => [
         'title' => 'Керування мовами',
@@ -62,5 +62,9 @@ return [
         'not_found' => 'Не знайдено',
         'found_help' => 'Чи не виникли помилки під час сканування.',
         'found_title' => 'Помилки сканування',
+    ],
+    'commands' => [
+        'disclaimer' => 'golem15.translate::lang.commands.disclaimer',
+        'success' => 'golem15.translate::lang.commands.success',
     ],
 ];

@@ -14,7 +14,7 @@ return [
     ],
     'alternate_hreflang' => [
         'component_name' => 'Εναλλακτικά στοιχεία hrefLang',
-        'component_description' => 'Εισαγωγή εναλλακτικών γλωσσών για τη σελίδα ως στοιχεία hreflang'
+        'component_description' => 'Εισαγωγή εναλλακτικών γλωσσών για τη σελίδα ως στοιχεία hreflang',
     ],
     'locale' => [
         'title' => 'Διαχείριση γλώσσας',
@@ -62,5 +62,9 @@ return [
         'not_found' => 'Δεν βρέθηκε',
         'found_help' => 'Εάν τυχόν σφάλματα παρουσιάστηκαν κατά τη σάρωση.',
         'found_title' => 'Σάρωση σφαλμάτων',
+    ],
+    'commands' => [
+        'disclaimer' => 'golem15.translate::lang.commands.disclaimer',
+        'success' => 'golem15.translate::lang.commands.success',
     ],
 ];

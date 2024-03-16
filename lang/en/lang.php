@@ -14,7 +14,7 @@ return [
     ],
     'alternate_hreflang' => [
         'component_name' => 'Alternate hrefLang elements',
-        'component_description' => 'Injects the language alternatives for page as hreflang elements'
+        'component_description' => 'Injects the language alternatives for page as hreflang elements',
     ],
     'locale' => [
         'title' => 'Manage languages',
@@ -62,5 +62,9 @@ return [
         'not_found' => 'Not found',
         'found_help' => 'Whether any errors occurred during scanning.',
         'found_title' => 'Scan errors',
+    ],
+    'commands' => [
+        'disclaimer' => 'golem15.translate::lang.commands.disclaimer',
+        'success' => 'golem15.translate::lang.commands.success',
     ],
 ];

@@ -63,4 +63,8 @@ return [
         'found_help' => 'Tarama sırasında herhangi bir hata oluşup oluşmadığı.',
         'found_title' => 'Tarama hataları',
     ],
+    'commands' => [
+        'disclaimer' => 'golem15.translate::lang.commands.disclaimer',
+        'success' => 'golem15.translate::lang.commands.success',
+    ],
 ];

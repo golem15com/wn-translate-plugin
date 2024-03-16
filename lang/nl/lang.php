@@ -6,7 +6,7 @@ return [
         'description' => 'Stelt meerdere talen in voor een website.',
         'tab' => 'Vertalingen',
         'manage_locales' => 'Beheer talen',
-        'manage_messages' => 'Beheer vertaalde berichten'
+        'manage_messages' => 'Beheer vertaalde berichten',
     ],
     'locale_picker' => [
         'component_name' => 'Taalkeuze menu',
@@ -14,7 +14,7 @@ return [
     ],
     'alternate_hreflang' => [
         'component_name' => 'Alternatieve hrefLang elementen',
-        'component_description' => 'Toont hreflang elementen voor de alt. talen'
+        'component_description' => 'Toont hreflang elementen voor de alt. talen',
     ],
     'locale' => [
         'title' => 'Beheer talen',
@@ -62,5 +62,9 @@ return [
         'not_found' => 'Niet gevonden',
         'found_help' => 'Of er fouten zijn opgetreden tijdens het scannen.',
         'found_title' => 'Scanfouten',
+    ],
+    'commands' => [
+        'disclaimer' => 'golem15.translate::lang.commands.disclaimer',
+        'success' => 'golem15.translate::lang.commands.success',
     ],
 ];

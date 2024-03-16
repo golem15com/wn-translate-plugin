@@ -6,7 +6,7 @@ return [
         'description' => 'Aktivuje vícejazyčné stránky a překlady.',
         'tab' => 'Překlad',
         'manage_locales' => 'Správa jazyků',
-        'manage_messages' => 'Správa překladů'
+        'manage_messages' => 'Správa překladů',
     ],
     'locale_picker' => [
         'component_name' => 'Výběr jazyka',
@@ -28,6 +28,9 @@ return [
         'is_enabled_help' => 'Neaktivní jazyky nepůjdou vybrat na webových stránkách.',
         'not_available_help' => 'Nemáte nastavené žádné jiné jazyky.',
         'hint_locales' => 'Zde můžete přidat nový jazyk pro překlad webových stránek. Výchozí jazyk reprezentuje obsah stránek ještě před překladem.',
+        'reorder_title' => 'Přeuspořádání titulu',
+        'sort_order' => 'Řazení',
+        'delete_default' => 'Smazat výchozí',
     ],
     'messages' => [
         'title' => 'Překlad textů',
@@ -42,5 +45,26 @@ return [
         'scan_messages_hint' => 'Kliknutím na <strong>Najít texty k překladu</strong> zkontroluje soubory aktivních témat a najde texty k překladu.',
         'hint_translate' => 'Zde můžete přeložit texty použité na webových stránkách. Pole budou automaticky uložena.',
         'hide_translated' => 'Schovat přeložené',
+        'import_messages_link' => 'Import zpráv',
+        'export_messages_link' => 'Export zpráv',
+        'scan_messages_process' => 'Proces skenování zpráv',
+        'scan_messages_process_limitations' => 'Omezení procesu skenování zpráv',
+        'scan_messages_purge_label' => 'Označení pro vyčištění zpráv',
+        'scan_messages_purge_help' => 'Nápověda pro vyčištění zpráv',
+        'scan_messages_purge_deleted_label' => 'Označení pro vyčištění smazaných zpráv',
+        'scan_messages_purge_deleted_help' => 'Nápověda pro vyčištění smazaných zpráv',
+        'scan_messages_begin_scan' => 'Začít skenování',
+        'scan_messages_purge_confirm' => 'Potvrzení vyčištění zpráv',
+        'found_title' => 'Nalezený titul',
+        'found_help' => 'Nápověda pro nalezené',
+        'not_found' => 'Nenalezeno',
+    ],
+    'alternate_hreflang' => [
+        'component_name' => 'Translate',
+        'component_description' => 'Translate Hreflang component',
+    ],
+    'commands' => [
+        'disclaimer' => 'golem15.translate::lang.commands.disclaimer',
+        'success' => 'golem15.translate::lang.commands.success',
     ],
 ];

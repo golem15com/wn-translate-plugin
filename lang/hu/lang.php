@@ -6,15 +6,15 @@ return [
         'description' => 'Többnyelvű weboldal létrehozását teszi lehetővé.',
         'tab' => 'Fordítás',
         'manage_locales' => 'Nyelvek kezelése',
-        'manage_messages' => 'Szövegek fordítása'
+        'manage_messages' => 'Szövegek fordítása',
     ],
     'locale_picker' => [
         'component_name' => 'Nyelvi választó',
-        'component_description' => 'Legördülő menüt jelenít meg a nyelv kiválasztásához.'
+        'component_description' => 'Legördülő menüt jelenít meg a nyelv kiválasztásához.',
     ],
     'alternate_hreflang' => [
         'component_name' => 'Nyelvi oldalak',
-        'component_description' => 'A hreflang HTML meta sorok generálása a keresők számára.'
+        'component_description' => 'A hreflang HTML meta sorok generálása a keresők számára.',
     ],
     'locale' => [
         'title' => 'Nyelvek',
@@ -34,7 +34,7 @@ return [
         'not_available_help' => 'Nincsenek más beállított nyelvek.',
         'hint_locales' => 'Itt hozhat létre új nyelveket a látogatói oldal tartalmának lefordításához. Az alapértelmezett nyelv képviseli a fordítás előtti tartalmat.',
         'reorder_title' => 'Rendezés',
-        'sort_order' => 'Sorrend'
+        'sort_order' => 'Sorrend',
     ],
     'messages' => [
         'title' => 'Szövegek',
@@ -56,6 +56,15 @@ return [
         'hint_translate' => 'Itt fordíthatja le a látogatók által elérhető oldalon megjelenő szövegeket. A beírt változtatások automatikusan mentésre kerülnek.',
         'hide_translated' => 'Lefordítottak elrejtése',
         'export_messages_link' => 'Szövegek exportálása',
-        'import_messages_link' => 'Szövegek importálása'
-    ]
+        'import_messages_link' => 'Szövegek importálása',
+        'scan_messages_purge_deleted_label' => 'golem15.translate::lang.messages.scan_messages_purge_deleted_label',
+        'scan_messages_purge_deleted_help' => 'golem15.translate::lang.messages.scan_messages_purge_deleted_help',
+        'found_title' => 'golem15.translate::lang.messages.found_title',
+        'found_help' => 'golem15.translate::lang.messages.found_help',
+        'not_found' => 'golem15.translate::lang.messages.not_found',
+    ],
+    'commands' => [
+        'disclaimer' => 'golem15.translate::lang.commands.disclaimer',
+        'success' => 'golem15.translate::lang.commands.success',
+    ],
 ];

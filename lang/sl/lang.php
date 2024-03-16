@@ -57,5 +57,14 @@ return [
         'hide_translated' => 'Skrij prevedena besedila',
         'export_messages_link' => 'Izvozi besedila',
         'import_messages_link' => 'Uvozi besedila',
+        'scan_messages_purge_deleted_label' => 'golem15.translate::lang.messages.scan_messages_purge_deleted_label',
+        'scan_messages_purge_deleted_help' => 'golem15.translate::lang.messages.scan_messages_purge_deleted_help',
+        'found_title' => 'golem15.translate::lang.messages.found_title',
+        'found_help' => 'golem15.translate::lang.messages.found_help',
+        'not_found' => 'golem15.translate::lang.messages.not_found',
+    ],
+    'commands' => [
+        'disclaimer' => 'golem15.translate::lang.commands.disclaimer',
+        'success' => 'golem15.translate::lang.commands.success',
     ],
 ];

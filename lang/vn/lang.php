@@ -14,7 +14,7 @@ return [
     ],
     'alternate_hreflang' => [
         'component_name' => 'Các phần tử hrefLang thay thế',
-        'component_description' => 'Chèn các lựa chọn ngôn ngữ thay thế cho trang dưới dạng phần tử hreflang'
+        'component_description' => 'Chèn các lựa chọn ngôn ngữ thay thế cho trang dưới dạng phần tử hreflang',
     ],
     'locale' => [
         'title' => 'Quản lý ngôn ngữ',
@@ -62,5 +62,9 @@ return [
         'not_found' => 'Không tìm thấy',
         'found_help' => 'Các lỗi sảy ra trong quá trình quét.',
         'found_title' => 'Các lỗi',
+    ],
+    'commands' => [
+        'disclaimer' => 'golem15.translate::lang.commands.disclaimer',
+        'success' => 'golem15.translate::lang.commands.success',
     ],
 ];

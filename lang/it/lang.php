@@ -51,5 +51,20 @@ return [
         'scan_messages_purge_confirm' => 'Sei sicuro di voler cancellare tutti i messaggi? Questa operazione non può essere annullata!',
         'hint_translate' => 'Qui puoi tradurre i messaggi usati nel sito web, i campi verranno salvati automaticamente.',
         'hide_translated' => 'Nascondi i messaggi tradotti',
+        'import_messages_link' => 'golem15.translate::lang.messages.import_messages_link',
+        'export_messages_link' => 'golem15.translate::lang.messages.export_messages_link',
+        'scan_messages_purge_deleted_label' => 'golem15.translate::lang.messages.scan_messages_purge_deleted_label',
+        'scan_messages_purge_deleted_help' => 'golem15.translate::lang.messages.scan_messages_purge_deleted_help',
+        'found_title' => 'golem15.translate::lang.messages.found_title',
+        'found_help' => 'golem15.translate::lang.messages.found_help',
+        'not_found' => 'golem15.translate::lang.messages.not_found',
+    ],
+    'commands' => [
+        'disclaimer' => 'golem15.translate::lang.commands.disclaimer',
+        'success' => 'golem15.translate::lang.commands.success',
+    ],
+    'alternate_hreflang' => [
+        'component_name' => 'golem15.translate::lang.alternate_hreflang.component_name',
+        'component_description' => 'golem15.translate::lang.alternate_hreflang.component_description',
     ],
 ];

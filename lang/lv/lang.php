@@ -14,7 +14,7 @@ return [
     ],
     'alternate_hreflang' => [
         'component_name' => 'Alternatīvie hrefLang elementi',
-        'component_description' => 'Iekļauj valodu alternatīvas kā lapas hreflang elementus'
+        'component_description' => 'Iekļauj valodu alternatīvas kā lapas hreflang elementus',
     ],
     'locale' => [
         'title' => 'Pārvaldīt valodas',
@@ -63,5 +63,8 @@ return [
         'found_help' => 'Skenēšanas laikā atklātās kļūdas.',
         'found_title' => 'Skenēšanas kļūdas',
     ],
+    'commands' => [
+        'disclaimer' => 'golem15.translate::lang.commands.disclaimer',
+        'success' => 'golem15.translate::lang.commands.success',
+    ],
 ];
-

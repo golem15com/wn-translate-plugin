@@ -6,7 +6,7 @@ return [
         'description' => 'Permet de créer des sites Internet multilingues',
         'tab' => 'Traduction',
         'manage_locales' => 'Manage locales',
-        'manage_messages' => 'Manage messages'
+        'manage_messages' => 'Manage messages',
     ],
     'locale_picker' => [
         'component_name' => 'Sélection de la langue',
@@ -14,7 +14,7 @@ return [
     ],
     'alternate_hreflang' => [
         'component_name' => 'Éléments hrefLang alternatifs',
-        'component_description' => "Injecte les alternatives linguistiques pour la page en tant qu'éléments hreflang"
+        'component_description' => 'Injecte les alternatives linguistiques pour la page en tant qu\'éléments hreflang',
     ],
     'locale' => [
         'title' => 'Gestion des langues',
@@ -57,5 +57,14 @@ return [
         'hide_translated' => 'Masquer les traductions',
         'export_messages_link' => 'Exporter les messages',
         'import_messages_link' => 'Importer les messages',
+        'scan_messages_purge_deleted_label' => 'golem15.translate::lang.messages.scan_messages_purge_deleted_label',
+        'scan_messages_purge_deleted_help' => 'golem15.translate::lang.messages.scan_messages_purge_deleted_help',
+        'found_title' => 'golem15.translate::lang.messages.found_title',
+        'found_help' => 'golem15.translate::lang.messages.found_help',
+        'not_found' => 'golem15.translate::lang.messages.not_found',
+    ],
+    'commands' => [
+        'disclaimer' => 'golem15.translate::lang.commands.disclaimer',
+        'success' => 'golem15.translate::lang.commands.success',
     ],
 ];

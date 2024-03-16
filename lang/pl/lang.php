@@ -6,7 +6,7 @@ return [
         'description' => 'Umożliwia tworzenie stron wielojęzycznych.',
         'tab' => 'Tłumaczenie',
         'manage_locales' => 'Zarządzaj językami',
-        'manage_messages' => 'Zarządzaj treścią'
+        'manage_messages' => 'Zarządzaj treścią',
     ],
     'locale_picker' => [
         'component_name' => 'Lista języków',
@@ -14,7 +14,7 @@ return [
     ],
     'alternate_hreflang' => [
         'component_name' => 'Alternatywne ustawienia hreflang',
-        'component_description' => 'Ustawia alternatywne języki dla strony jako parametry hreflang'
+        'component_description' => 'Ustawia alternatywne języki dla strony jako parametry hreflang',
     ],
     'locale' => [
         'title' => 'Zarządzaj językami',
@@ -62,5 +62,9 @@ return [
         'not_found' => 'Nie znaleziono',
         'found_help' => 'Wystąpiły błędy podczas skanowania',
         'found_title' => 'Błąd skanowania',
+    ],
+    'commands' => [
+        'disclaimer' => 'golem15.translate::lang.commands.disclaimer',
+        'success' => 'golem15.translate::lang.commands.success',
     ],
 ];

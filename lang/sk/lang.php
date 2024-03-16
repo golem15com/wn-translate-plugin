@@ -14,7 +14,7 @@ return [
     ],
     'alternate_hreflang' => [
         'component_name' => 'Alternatívne prvky hrefLang',
-        'component_description' => 'Vloží jazykové alternatívy pre stránku ako prvky hreflang'
+        'component_description' => 'Vloží jazykové alternatívy pre stránku ako prvky hreflang',
     ],
     'locale' => [
         'title' => 'Spravovať jazyky',
@@ -57,5 +57,14 @@ return [
         'hide_translated' => 'Skryť preložené',
         'export_messages_link' => 'Exportovať správy',
         'import_messages_link' => 'Importovať správy',
+        'scan_messages_purge_deleted_label' => 'golem15.translate::lang.messages.scan_messages_purge_deleted_label',
+        'scan_messages_purge_deleted_help' => 'golem15.translate::lang.messages.scan_messages_purge_deleted_help',
+        'found_title' => 'golem15.translate::lang.messages.found_title',
+        'found_help' => 'golem15.translate::lang.messages.found_help',
+        'not_found' => 'golem15.translate::lang.messages.not_found',
+    ],
+    'commands' => [
+        'disclaimer' => 'golem15.translate::lang.commands.disclaimer',
+        'success' => 'golem15.translate::lang.commands.success',
     ],
 ];

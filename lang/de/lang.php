@@ -6,6 +6,7 @@ return [
         'description' => 'Ermöglicht mehrsprachige Seiten.',
         'manage_locales' => 'Sprachen verwalten',
         'manage_messages' => 'Übersetzungen verwalten',
+        'tab' => 'Translate',
     ],
     'locale_picker' => [
         'component_name' => 'Sprachauswahl',
@@ -29,6 +30,7 @@ return [
         'hint_locales' => 'Hier können neue Sprachen angelegt werden, in die Inhalte im Frontend übersetzt werden können. Die Standardsprache dient als Ausgangssprache für Übersetzungen.',
         'reorder_title' => 'Sprachen sortieren',
         'sort_order' => 'Sortierung',
+        'delete_default' => 'golem15.translate::lang.locale.delete_default',
     ],
     'messages' => [
         'title' => 'Übersetzungen verwalten',
@@ -45,5 +47,24 @@ return [
         'hide_translated' => 'Bereits übersetzte Inhalte ausblenden',
         'export_messages_link' => 'Übersetzungen exportieren',
         'import_messages_link' => 'Übersetzungen importieren',
+        'scan_messages_process' => 'golem15.translate::lang.messages.scan_messages_process',
+        'scan_messages_process_limitations' => 'golem15.translate::lang.messages.scan_messages_process_limitations',
+        'scan_messages_purge_label' => 'golem15.translate::lang.messages.scan_messages_purge_label',
+        'scan_messages_purge_help' => 'golem15.translate::lang.messages.scan_messages_purge_help',
+        'scan_messages_purge_deleted_label' => 'golem15.translate::lang.messages.scan_messages_purge_deleted_label',
+        'scan_messages_purge_deleted_help' => 'golem15.translate::lang.messages.scan_messages_purge_deleted_help',
+        'scan_messages_begin_scan' => 'golem15.translate::lang.messages.scan_messages_begin_scan',
+        'scan_messages_purge_confirm' => 'golem15.translate::lang.messages.scan_messages_purge_confirm',
+        'found_title' => 'golem15.translate::lang.messages.found_title',
+        'found_help' => 'golem15.translate::lang.messages.found_help',
+        'not_found' => 'golem15.translate::lang.messages.not_found',
+    ],
+    'commands' => [
+        'disclaimer' => 'golem15.translate::lang.commands.disclaimer',
+        'success' => 'golem15.translate::lang.commands.success',
+    ],
+    'alternate_hreflang' => [
+        'component_name' => 'golem15.translate::lang.alternate_hreflang.component_name',
+        'component_description' => 'golem15.translate::lang.alternate_hreflang.component_description',
     ],
 ];
