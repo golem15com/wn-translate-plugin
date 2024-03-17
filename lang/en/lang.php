@@ -64,7 +64,7 @@ return [
         'found_title' => 'Scan errors',
     ],
     'commands' => [
-        'disclaimer' => 'golem15.translate::lang.commands.disclaimer',
-        'success' => 'golem15.translate::lang.commands.success',
+        'disclaimer' => 'Translatable mode is active.',
+        'success' => 'Command succeeded.',
     ],
 ];
