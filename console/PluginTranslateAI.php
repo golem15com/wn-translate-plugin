@@ -9,6 +9,7 @@ use Golem15\AI\Support\EngineRegistry;
 use Golem15\SmartSite\Factories\ContentFactory;
 use Golem15\Translate\Support\LanguageInfo;
 use Illuminate\Console\Command;
+use Illuminate\Support\Facades\Artisan;
 use Mistralys\Diff\Diff;
 use Symfony\Component\Console\Input\InputArgument;
 
@@ -18,6 +19,8 @@ class PluginTranslateAI extends Command
      * The console command name.
      */
     protected $name = 'plugin:translate-ai';
+
+    protected $signature = 'plugin:translate-ai {name} {language?}';
 
     /**
      * The console command description.
@@ -40,8 +43,8 @@ class PluginTranslateAI extends Command
     public function handle()
     {
         $plugin = $this->argument('name');
+        $languageSelected = $this->argument('language');
         $this->info('Translating ' . $plugin . '... ');
-        $this->info('Run plugin:translate ' . $plugin . ' first to generate missing translations.');
         $parts = explode('.', $plugin);
 
         if (count($parts) != 2) {
@@ -65,8 +68,12 @@ class PluginTranslateAI extends Command
         $context = [];
         $translated = [];
         $this->info('Scanning for missing translations...');
+      //  Artisan::call('plugin:translate ' . $plugin);
         foreach ($languages as $language) {
             if ($language == '.' || $language == '..' || !is_dir($destinationPath . $language)) {
+                continue;
+            }
+            if($languageSelected && $language != $languageSelected){
                 continue;
             }
             $langFile = $destinationPath . $language . '/lang.php';
@@ -85,6 +92,12 @@ class PluginTranslateAI extends Command
         $this->info('AI translations start.');
         $this->info(count($combinedMissing) . ' strings require translation.');
         foreach ($pending as $languageCode => $value) {
+            if ($languageCode === 'en'){
+                $c = $this->confirm('Skipping English translation?');
+                if($c) {
+                    continue;
+                }
+            }
             $this->info('Translating ' . $languageCode . '...');
             $translated[$languageCode] = $this->getTranslation($languageCode, $value, $contextLanguage);
             $this->info('Translation for ' . $languageCode);
@@ -93,8 +106,8 @@ class PluginTranslateAI extends Command
             if ($confirmed) {
                 $langFile = $destinationPath . $languageCode . '/lang.php';
                 $langArray = include($langFile);
-                $translatedLangArray = array_merge($langArray, $translated[$languageCode]);
-                $content = '<?php' . PHP_EOL . PHP_EOL . 'return ' . var_export($langArray, true) . ';';
+                $translatedLangArray = $this->mergeLocaleFiles($langArray, $translated[$languageCode]);
+                $content = '<?php' . PHP_EOL . PHP_EOL . 'return ' . var_export($translatedLangArray, true) . ';';
                 file_put_contents($langFile, $content, LOCK_EX);
             }
         }
@@ -108,6 +121,11 @@ class PluginTranslateAI extends Command
                 'name',
                 InputArgument::REQUIRED,
                 'The name of the plugin to scan. Eg: Golem15.Blog'
+            ],
+            [
+                'language',
+                InputArgument::OPTIONAL,
+                'The language to translate. Eg: pl'
             ],
         ];
     }
@@ -180,7 +198,7 @@ class PluginTranslateAI extends Command
         $langName = LanguageInfo::getNameForCode($languageCode);
         $query = 'Translate below content to language: ' . $langName . PHP_EOL;
         $query .= 'Always read target code from the CODE. I will give you context by adding default version, use it to translate all ::lang fields properly. Respond in JSON.' . PHP_EOL;
-        $query .= 'Never respond back with ::lang items. Use the context to translate the content properly to ' .$langName .', all sources are there..';
+        $query .= 'Never respond back with ::lang items. Use the context to translate the content properly to ' .$langName .', all sources are there.';
         $query .= 'Source data: ' . json_encode($contextLanguage);
         $query .= 'Content to translate: ' . json_encode($value);
         $prompt->query = $query;
@@ -188,7 +206,21 @@ class PluginTranslateAI extends Command
         /** @var Engine $engine */
         $engine = app()->make(EngineRegistry::class)->getEngine($prompt->engine->class);
         $message = $engine->getResponse($prompt, [], true, false);
+
         return $message->getJSONResponse();
+    }
+
+    public function mergeLocaleFiles(mixed $langArray, mixed $translation)
+    {
+        $merged = $langArray;
+        if (is_array($translation))
+            foreach ($translation as $key => $val)
+                if (is_array($translation[$key]))
+                    $merged[$key] = is_array($merged[$key]) ? $this->mergeLocaleFiles($merged[$key], $translation[$key]) : $translation[$key];
+                else
+                    $merged[$key] = $val;
+
+        return $merged;
     }
 
 }
