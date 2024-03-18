@@ -6,7 +6,7 @@ use Golem15\AI\Interfaces\Engine;
 use Golem15\AI\Models\Prompt;
 use Golem15\AI\Models\Settings;
 use Golem15\AI\Support\EngineRegistry;
-use Golem15\SmartSite\Factories\ContentFactory;
+use Golem15\AI\Factories\ContentFactory;
 use Golem15\Translate\Support\LanguageInfo;
 use Illuminate\Console\Command;
 use Illuminate\Support\Facades\Artisan;
@@ -197,6 +197,7 @@ class PluginTranslateAI extends Command
         $prompt->engine_id = $prompt->languageModel->engine_id;
         $langName = LanguageInfo::getNameForCode($languageCode);
         $query = 'Translate below content to language: ' . $langName . PHP_EOL;
+        $query .= 'If language is english, try to figure out possible meaning.' . PHP_EOL;
         $query .= 'Always read target code from the CODE. I will give you context by adding default version, use it to translate all ::lang fields properly. Respond in JSON.' . PHP_EOL;
         $query .= 'Never respond back with ::lang items. Use the context to translate the content properly to ' .$langName .', all sources are there.';
         $query .= 'Source data: ' . json_encode($contextLanguage);
