@@ -93,7 +93,9 @@ class PluginTranslateAI extends Command
         $this->info(count($combinedMissing) . ' strings require translation.');
         foreach ($pending as $languageCode => $value) {
             if ($languageCode === 'en'){
-                $c = $this->confirm('Skipping English translation?');
+                dump($combinedMissing);
+                $c = $this->confirm('English language detected! Make sure all your english files are up to date.');
+
                 if($c) {
                     continue;
                 }

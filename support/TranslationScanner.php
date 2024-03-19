@@ -181,8 +181,11 @@ class TranslationScanner
      */
     protected function localePath()
     {
-        $path = base_path() . '/plugins/' . strtolower($this->vars['author']) . '/' . strtolower($this->vars['plugin']) . '/lang';
-
+        if ($this->vars['author'] === 'themes') {
+            $path = themes_path(strtolower($this->vars['plugin'])) . '/lang';
+        } else {
+            $path = base_path() . '/plugins/' . strtolower($this->vars['author']) . '/' . strtolower($this->vars['plugin']) . '/lang';
+        }
         if ( ! file_exists($path)) {
             mkdir($path);
         }

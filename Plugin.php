@@ -12,6 +12,7 @@ use DOMElement;
 use Event;
 use Golem15\Translate\Console\PluginTranslate;
 use Golem15\Translate\Console\PluginTranslateAI;
+use Golem15\Translate\Console\ThemeTranslate;
 use Lang;
 use Model;
 use System\Classes\CombineAssets;
@@ -175,7 +176,8 @@ class Plugin extends PluginBase
         $this->registerAssetBundles();
         $this->commands([
             PluginTranslate::class,
-            PluginTranslateAI::class
+            PluginTranslateAI::class,
+            ThemeTranslate::class
         ]);
     }
 
