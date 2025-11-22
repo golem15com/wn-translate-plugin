@@ -3,6 +3,7 @@
 namespace Golem15\Translate\FormWidgets;
 
 use Backend\FormWidgets\SmartEditor;
+use Golem15\AI\FormWidgets\SmartEditor;
 use Golem15\Translate\Models\Locale;
 
 /**
