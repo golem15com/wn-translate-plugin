@@ -7,7 +7,7 @@ use Cms\Classes\CmsCompoundObject;
  */
 class Feature extends CmsCompoundObject
 {
-    public $implement = ['@Golem15.Translate.Behaviors.TranslatableCmsObject'];
+    public $implement = ['@golem15.translate.Behaviors.TranslatableCmsObject'];
 
     /**
      * @var array Attributes that support translation, if available.

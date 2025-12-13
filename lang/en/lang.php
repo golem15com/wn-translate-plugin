@@ -14,9 +14,11 @@ return [
     ],
     'alternate_hreflang' => [
         'component_name' => 'Alternate hrefLang elements',
-        'component_description' => 'Injects the language alternatives for page as hreflang elements',
+        'component_description' => 'Injects the language alternatives for page as hreflang elements'
     ],
     'locale' => [
+        'label' => 'Language',
+        'label_plural' => 'Languages',
         'title' => 'Manage languages',
         'update_title' => 'Update language',
         'create_title' => 'Create language',
@@ -35,6 +37,8 @@ return [
         'hint_locales' => 'Create new languages here for translating front-end content. The default language represents the content before it has been translated.',
         'reorder_title' => 'Reorder languages',
         'sort_order' => 'Sort Order',
+        'copy_from' => 'Copy from :locale',
+        'copy_confirm' => 'Are you sure you want to copy from another locale?',
     ],
     'messages' => [
         'title' => 'Translate messages',
@@ -62,9 +66,5 @@ return [
         'not_found' => 'Not found',
         'found_help' => 'Whether any errors occurred during scanning.',
         'found_title' => 'Scan errors',
-    ],
-    'commands' => [
-        'disclaimer' => 'Translatable mode is active.',
-        'success' => 'Command succeeded.',
     ],
 ];

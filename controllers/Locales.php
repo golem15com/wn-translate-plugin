@@ -25,9 +25,9 @@ class Locales extends Controller
         parent::__construct();
 
         BackendMenu::setContext('Winter.System', 'system', 'settings');
-        SettingsManager::setContext('Golem15.Translate', 'locales');
+        SettingsManager::setContext('golem15.translate', 'locales');
 
-        $this->addJs('/plugins/golem15/translate/assets/js/locales.js');
+        $this->addJs('/plugins/winter/translate/assets/js/locales.js');
     }
 
     /**

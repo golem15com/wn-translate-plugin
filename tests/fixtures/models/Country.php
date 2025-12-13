@@ -7,7 +7,7 @@ use Model;
  */
 class Country extends Model
 {
-    public $implement = ['@Golem15.Translate.Behaviors.TranslatableModel'];
+    public $implement = ['@golem15.translate.Behaviors.TranslatableModel'];
 
     public $translatable = [['name', 'index' => true], 'states'];
 

@@ -14,7 +14,7 @@ use Golem15\Translate\Models\Locale;
  *
  * In the CMS object class definition:
  *
- *   public $implement = ['@Golem15.Translate.Behaviors.TranslatableCmsObject'];
+ *   public $implement = ['@golem15.translate.Behaviors.TranslatableCmsObject'];
  *
  *   public $translatable = ['title', 'markup'];
  *

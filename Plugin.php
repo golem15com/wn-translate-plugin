@@ -10,9 +10,6 @@ use Cms\Models\ThemeData;
 use DOMDocument;
 use DOMElement;
 use Event;
-use Golem15\Translate\Console\PluginTranslate;
-use Golem15\Translate\Console\PluginTranslateAI;
-use Golem15\Translate\Console\ThemeTranslate;
 use Lang;
 use Model;
 use System\Classes\CombineAssets;
@@ -43,8 +40,8 @@ class Plugin extends PluginBase
             'description' => 'golem15.translate::lang.plugin.description',
             'author'      => 'Winter CMS',
             'icon'        => 'icon-language',
-            'homepage'    => 'https://github.com/golem15/wn-translate-plugin',
-            'replaces'    => ['RainLab.Translate' => '<= 1.9.0'],
+            'homepage'    => 'https://github.com/wintercms/wn-translate-plugin',
+            'replaces'    => ['RainLab.Translate' => '<= 1.9.0', 'Winter.Translate' => '<= 2.1.0' ],
         ];
     }
 
@@ -88,7 +85,7 @@ class Plugin extends PluginBase
                 'label'       => 'golem15.translate::lang.locale.title',
                 'description' => 'golem15.translate::lang.plugin.description',
                 'icon'        => 'icon-language',
-                'url'         => Backend::url('golem15/translate/locales'),
+                'url'         => Backend::url('winter/translate/locales'),
                 'order'       => 550,
                 'category'    => 'golem15.translate::lang.plugin.name',
                 'permissions' => ['golem15.translate.manage_locales']
@@ -97,7 +94,7 @@ class Plugin extends PluginBase
                 'label'       => 'golem15.translate::lang.messages.title',
                 'description' => 'golem15.translate::lang.messages.description',
                 'icon'        => 'icon-list-alt',
-                'url'         => Backend::url('golem15/translate/messages'),
+                'url'         => Backend::url('winter/translate/messages'),
                 'order'       => 551,
                 'category'    => 'golem15.translate::lang.plugin.name',
                 'permissions' => ['golem15.translate.manage_messages']
@@ -142,13 +139,15 @@ class Plugin extends PluginBase
     public function registerFormWidgets(): array
     {
         return [
-            \Golem15\Translate\FormWidgets\MLText::class           => 'mltext',
-            \Golem15\Translate\FormWidgets\MLTextarea::class       => 'mltextarea',
-            \Golem15\Translate\FormWidgets\MLRichEditor::class     => 'mlricheditor',
+            \Golem15\Translate\FormWidgets\MLBlocks::class => 'mlblocks',
             \Golem15\Translate\FormWidgets\MLMarkdownEditor::class => 'mlmarkdowneditor',
-            \Golem15\Translate\FormWidgets\MLRepeater::class       => 'mlrepeater',
-            \Golem15\Translate\FormWidgets\MLMediaFinder::class    => 'mlmediafinder',
-            \Golem15\Translate\FormWidgets\MLNestedForm::class     => 'mlnestedform',
+            \Golem15\Translate\FormWidgets\MLMediaFinder::class => 'mlmediafinder',
+            \Golem15\Translate\FormWidgets\MLNestedForm::class => 'mlnestedform',
+            \Golem15\Translate\FormWidgets\MLRepeater::class => 'mlrepeater',
+            \Golem15\Translate\FormWidgets\MLRichEditor::class => 'mlricheditor',
+            \Golem15\Translate\FormWidgets\MLText::class => 'mltext',
+            \Golem15\Translate\FormWidgets\MLTextarea::class => 'mltextarea',
+            \Golem15\Translate\FormWidgets\MLUrl::class => 'mlurl',
         ];
     }
 
@@ -158,8 +157,8 @@ class Plugin extends PluginBase
     protected function registerAssetBundles()
     {
         CombineAssets::registerCallback(function ($combiner) {
-            $combiner->registerBundle('$/golem15/translate/assets/less/messages.less');
-            $combiner->registerBundle('$/golem15/translate/assets/less/multilingual.less');
+            $combiner->registerBundle('$/winter/translate/assets/less/messages.less');
+            $combiner->registerBundle('$/winter/translate/assets/less/multilingual.less');
         });
     }
 
@@ -174,11 +173,6 @@ class Plugin extends PluginBase
         $this->registerConsoleCommand('translate.scan', \Golem15\Translate\Console\ScanCommand::class);
 
         $this->registerAssetBundles();
-        $this->commands([
-            PluginTranslate::class,
-            PluginTranslateAI::class,
-            ThemeTranslate::class
-        ]);
     }
 
     /**
@@ -209,6 +203,11 @@ class Plugin extends PluginBase
      */
     protected function extendCmsModule(): void
     {
+        // Verify that the CMS module is installed and enabled before extending it
+        if (!class_exists('\Cms\Classes\Page') || !in_array('Cms', config('cms.loadModules'))) {
+            return;
+        }
+
         /*
          * Handle translated page URLs
          */

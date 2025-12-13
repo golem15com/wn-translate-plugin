@@ -13,7 +13,7 @@ use Golem15\Translate\Classes\Translator;
  *
  * In the model class definition:
  *
- *   public $implement = ['@Golem15.Translate.Behaviors.TranslatablePageUrl'];
+ *   public $implement = ['@golem15.translate.Behaviors.TranslatablePageUrl'];
  *
  */
 class TranslatablePageUrl extends ExtensionBase
@@ -48,7 +48,7 @@ class TranslatablePageUrl extends ExtensionBase
 
         $this->initTranslatableContext();
 
-        $this->model->bindEvent('model.afterFetch', function() {
+        $this->model->bindEventOnce('model.afterFetch', function() {
             $this->translatableDefaultUrl = $this->getModelUrl();
 
             if (!App::runningInBackend()) {

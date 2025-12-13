@@ -10,7 +10,7 @@ use Golem15\Translate\Models\Locale;
  * Generic ML Control
  * Renders a multi-lingual control.
  *
- * @package golem15\translate
+ * @package Golem15\Translate
  * @author Alexey Bobkov, Samuel Georges
  */
 trait MLControl
@@ -133,8 +133,8 @@ trait MLControl
      */
     public function loadLocaleAssets()
     {
-        $this->addJs('/plugins/golem15/translate/assets/js/multilingual.js', 'Golem15.Translate');
-        $this->addCss('/plugins/golem15/translate/assets/css/multilingual.css', 'Golem15.Translate');
+        $this->addJs('/plugins/winter/translate/assets/js/multilingual.js', 'golem15.translate');
+        $this->addCss('/plugins/winter/translate/assets/css/multilingual.css', 'golem15.translate');
     }
 
     /**
@@ -156,7 +156,7 @@ trait MLControl
             $value = $this->model->$mutateMethod($locale);
         }
         elseif ($this->objectMethodExists($this->model, 'getAttributeTranslated') && $this->defaultLocale->code != $locale) {
-            $value = $this->model->noFallbackLocale()->getAttributeTranslated($key, $locale);
+            $value = $this->model->setTranslatableUseFallback(false)->getAttributeTranslated($key, $locale);
         }
         else {
             $value = $this->formField->value;

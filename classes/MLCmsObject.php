@@ -7,7 +7,7 @@ use Cms\Classes\CmsCompoundObject;
 /**
  * Represents a multi-lingual CMS compound object.
  *
- * @package golem15\translate
+ * @package Golem15\Translate
  * @author Alexey Bobkov, Samuel Georges
  */
 class MLCmsObject extends CmsCompoundObject

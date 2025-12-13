@@ -3,16 +3,16 @@
 # ===================================
 
 # Model List Column configuration
-list: ~/plugins/golem15/translate/models/locale/columns.yaml
+list: ~/plugins/winter/translate/models/locale/columns.yaml
 
 # Model Class name
 modelClass: Golem15\Translate\Models\Locale
 
 # List Title
-title: golem15.translate::lang.locale.title
+title: golem15.translate::lang.locale.label_plural
 
 # Link URL for each record
-# recordUrl: golem15/translate/locale/update/:id
+# recordUrl: winter/translate/locale/update/:id
 
 recordOnClick: $.translateLocales.clickRecord(:id)
 

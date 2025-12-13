@@ -104,7 +104,7 @@
 "1.8.1": Minor bugfix
 "1.8.2": Fixes translated file models and theme data for v2.0. The parent model must implement translatable behavior for their related file models to be translated.
 "2.0.0":
-    - Rebrand to Golem15.Translate
+    - Rebrand to golem15.translate
     - Fix location for dropdown-to in css file
     - v2.0.0/rename_tables.php
 "2.0.1":
@@ -126,3 +126,27 @@
     - "Fix translations conflicting between nested fields and translatable root fields of the same name."
 "2.1.3": "Fixed issue with translatable models"
 "2.1.4": "Fixed issue with broken imports in the backend Locales controller."
+"2.1.5":
+    - "Add support for translatable nested forms"
+    - "Add validation for translated string"
+    - "Add setTranslatableUseFallback() / deprecate noFallbackLocale()"
+    - "Only extend cms page if cms module is enabled"
+    - "Prevent browser autofill for hidden locale inputs"
+    - "System MailTemplate model is now translatable"
+    - "Make fields using @context translatable"
+"2.1.6":
+    - "Improve ML button styling"
+    - "Fix TranslatableBehavior::lang method signature"
+"2.1.7":
+    - "Only set alternateLinks if more than one locale is used"
+    - "Cleanup after model is deleted"
+    - "Add missing french translations"
+"2.2.0":
+    - "Fix translating pages on Winter v1.2.7+"
+"2.2.1":
+    - "Add mlblocks"
+    - "Add mlurl formwidget"
+    - "Replace translateContext call with getAttributeTranslated"
+    - "Fix message scan (revert to regex, twig tokenizer is broken)"
+"2.3.0": "Make use of controller behavior default views present in Winter v1.2.8+."
+"2.3.1": "Add ability to copy content from one language to another to simplify the translation process"

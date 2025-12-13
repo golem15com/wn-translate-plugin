@@ -12,7 +12,7 @@
     xsi:noNamespaceSchemaLocation="https://schema.phpunit.de/9.3/phpunit.xsd"
 >
     <testsuites>
-        <testsuite name="Golem15.Translate">
+        <testsuite name="golem15.translate">
             <directory>./tests</directory>
         </testsuite>
     </testsuites>

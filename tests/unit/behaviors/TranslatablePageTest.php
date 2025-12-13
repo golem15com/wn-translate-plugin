@@ -5,8 +5,8 @@ use Winter\Storm\Halcyon\Model;
 use Winter\Storm\Filesystem\Filesystem;
 use Winter\Storm\Halcyon\Datasource\FileDatasource;
 use Winter\Storm\Halcyon\Datasource\Resolver;
-use Golem15\Translate\Tests\Fixtures\Classes\MessageScanner;
 use Golem15\Translate\Tests\Fixtures\Classes\TranslatablePage;
+use Golem15\Translate\Classes\ThemeScanner;
 
 class TranslatablePageTest extends \Golem15\Translate\Tests\TranslatePluginTestCase
 {
@@ -39,6 +39,26 @@ class TranslatablePageTest extends \Golem15\Translate\Tests\TranslatePluginTestC
         parent::tearDown();
     }
 
+    /**
+     * @since 2.1.5
+     */
+    public function testUseFallbackFalse()
+    {
+        $page = TranslatablePage::create([
+            'fileName' => 'translatable',
+            'title' => 'english title',
+            'url' => '/test',
+        ]);
+        $page->translateContext('fr');
+        $this->assertEquals('english title', $page->title);
+        $page->setTranslatableUseFallback(false)->translateContext('fr');
+        $this->assertEquals(null, $page->title);
+    }
+
+    /**
+     * @deprecated 2.1.5
+     * @see testUseFallbackFalse()
+     */
     public function testUseFallback()
     {
         $page = TranslatablePage::create([
@@ -69,7 +89,7 @@ class TranslatablePageTest extends \Golem15\Translate\Tests\TranslatePluginTestC
 
     public function testThemeScanner()
     {
-        $scanner = new MessageScanner();
+        $scanner = new ThemeScanner();
 
         $check_strings = [
             // Should not match
@@ -84,43 +104,36 @@ class TranslatablePageTest extends \Golem15\Translate\Tests\TranslatePluginTestC
             ["{{ \"hello'|_ }}", []],
 
             // Should find 1 match
-            ["{{ 'hello'|_ }}}}", ['hello']],
-            ["{{{{ 'hello'|_ }}", ['hello']],
-            ["{{ 'hello'|_ }}", ['hello']],
-            ["{{ \"hello\"|_ }}", ['hello']],
-            ["{{ \"'hello\"|_ }}", ['\'hello']],
-            ["{{ '\"hello'|_ }}", ['"hello']],
-            ["{{ 'hello'|__ }}", ['hello']],
-            ["{{ 'hello'|transRaw }}", ['hello']],
-            ["{{ 'hello'|transRawPlural }}", ['hello']],
-            ["{{ 'hello'|localeUrl }}", ['hello']],
-            ["{{ 'hello'|_() }}", ['hello']],
-            ["{{ 'hello'|_(func()) }}", ['hello']],
-            ["{{ 'hello'|_({var: val}) }}", ['hello']],
-            ["{{ 'hello'|_({var: func(param)}) }}", ['hello']],
-            ["{{ 'hello'|_({var: func(nestedFunc())}) }}", ['hello']],
-            ["{{ 'hello'|_|filter }}", ['hello']],
-            ["{{ 'hello'|_|filter|otherfilter }}", ['hello']],
-            ["{{ 'Apostrophe\'s'|_ }}", ['Apostrophe\'s']],
-            ['{{ "String with \"Double quote\""|_ }}', ['String with "Double quote"']],
+            ["{{ 'hello1'|_ }}}}", ['hello1']],
+            ["{{{{ 'hello2'|_ }}", ['hello2']],
+            ["{{ 'hello3'|_ }}", ['hello3']],
+            ["{{ \"hello4\"|_ }}", ['hello4']],
+            ["{{ \"'hello5\"|_ }}", ['\'hello5']],
+            ["{{ '\"hello6'|_ }}", ['"hello6']],
+            ["{{ 'hello7'|__ }}", ['hello7']],
+            ["{{ 'hello8a'|transRaw }}", ['hello8a']],
+            ["{{ 'hello8b'|transRaw() }}", ['hello8b']],
+            ["{{ 'hello9a'|transRawPlural }}", ['hello9a']],
+            ["{{ 'hello9b'|transRawPlural() }}", ['hello9b']],
+            ["{{ 'hello10a'|localeUrl }}", ['hello10a']],
+            ["{{ 'hello10b'|localeUrl() }}", ['hello10b']],
+            ["{{ 'hello11'|_() }}", ['hello11']],
+            ["{{ 'hello12'|_(func()) }}", ['hello12']],
+            ["{{ 'hello13'|_({var: val}) }}", ['hello13']],
+            ["{{ 'hello14'|_({var: func(param)}) }}", ['hello14']],
+            ["{{ 'hello15'|_({var: func(nestedFunc())}) }}", ['hello15']],
+            ["{{ 'hello16'|_|filter }}", ['hello16']],
+            ["{{ 'hello17'|_|filter|otherfilter }}", ['hello17']],
 
             // Should find 2 matches
             [
-                '{{ \'Apostrophe\\\'s\'|_ }}{{ "String with \"Double quote\""|_ }}',
-                ['Apostrophe\'s', 'String with "Double quote"']
-            ],
-            [
-                "{{ 'hello'|_|filter|otherfilter }}{{ 'hello'|_|filter|otherfilter }}",
-                ['hello', 'hello']
-            ],
-            [
-                "{{ 'hello'|transRaw('nested translation'|_) }}",
-                ['hello', 'nested translation']
+                "{{ 'hello18a'|_|filter|otherfilter }}{{ 'hello18b'|_|filter|otherfilter }}",
+                ['hello18a', 'hello18b']
             ],
         ];
 
         foreach ($check_strings as $check) {
-            $this->assertEquals($scanner->getMessages($check[0]), $check[1]);
+            $this->assertEquals($scanner->processStandardTags($check[0]), $check[1]);
         }
     }
 }

@@ -8,7 +8,7 @@ use Backend\Classes\FormWidgetBase;
  * ML Textarea
  * Renders a multi-lingual textarea field.
  *
- * @package golem15\translate
+ * @package Golem15\Translate
  * @author Alexey Bobkov, Samuel Georges
  */
 class MLTextarea extends FormWidgetBase
@@ -62,6 +62,7 @@ class MLTextarea extends FormWidgetBase
     protected function loadAssets()
     {
         $this->loadLocaleAssets();
+        $this->addJs('js/mltextarea.js');
     }
 
 }

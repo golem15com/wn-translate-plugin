@@ -8,7 +8,7 @@ use Backend\Classes\FormWidgetBase;
  * ML Text
  * Renders a multi-lingual text field.
  *
- * @package golem15\translate
+ * @package Golem15\Translate
  * @author Alexey Bobkov, Samuel Georges
  */
 class MLText extends FormWidgetBase
