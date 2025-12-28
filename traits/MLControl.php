@@ -133,8 +133,8 @@ trait MLControl
      */
     public function loadLocaleAssets()
     {
-        $this->addJs('/plugins/winter/translate/assets/js/multilingual.js', 'golem15.translate');
-        $this->addCss('/plugins/winter/translate/assets/css/multilingual.css', 'golem15.translate');
+        $this->addJs('/plugins/golem15/translate/assets/js/multilingual.js', 'golem15.translate');
+        $this->addCss('/plugins/golem15/translate/assets/css/multilingual.css', 'golem15.translate');
     }
 
     /**

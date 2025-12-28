@@ -6,7 +6,7 @@
         <?= e(trans('golem15.translate::lang.locale.create_title')) ?>
     </a>
     <a
-        href="<?= Backend::url('winter/translate/locales/reorder') ?>"
+        href="<?= Backend::url('golem15/translate/locales/reorder') ?>"
         class="btn btn-primary oc-icon-arrows-v">
         <?= e(trans('golem15.translate::lang.locale.reorder_title')) ?>
     </a>

@@ -85,7 +85,7 @@ class Plugin extends PluginBase
                 'label'       => 'golem15.translate::lang.locale.title',
                 'description' => 'golem15.translate::lang.plugin.description',
                 'icon'        => 'icon-language',
-                'url'         => Backend::url('winter/translate/locales'),
+                'url'         => Backend::url('golem15/translate/locales'),
                 'order'       => 550,
                 'category'    => 'golem15.translate::lang.plugin.name',
                 'permissions' => ['golem15.translate.manage_locales']
@@ -94,7 +94,7 @@ class Plugin extends PluginBase
                 'label'       => 'golem15.translate::lang.messages.title',
                 'description' => 'golem15.translate::lang.messages.description',
                 'icon'        => 'icon-list-alt',
-                'url'         => Backend::url('winter/translate/messages'),
+                'url'         => Backend::url('golem15/translate/messages'),
                 'order'       => 551,
                 'category'    => 'golem15.translate::lang.plugin.name',
                 'permissions' => ['golem15.translate.manage_messages']
@@ -157,8 +157,8 @@ class Plugin extends PluginBase
     protected function registerAssetBundles()
     {
         CombineAssets::registerCallback(function ($combiner) {
-            $combiner->registerBundle('$/winter/translate/assets/less/messages.less');
-            $combiner->registerBundle('$/winter/translate/assets/less/multilingual.less');
+            $combiner->registerBundle('$/golem15/translate/assets/less/messages.less');
+            $combiner->registerBundle('$/golem15/translate/assets/less/multilingual.less');
         });
     }
 
