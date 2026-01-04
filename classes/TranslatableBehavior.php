@@ -331,6 +331,22 @@ abstract class TranslatableBehavior extends ExtensionBase
         $translatable = $this->model->getTranslatableAttributes();
         $originalValues = array_intersect_key($original, array_flip($translatable));
         $this->model->attributes = array_merge($attributes, $originalValues);
+
+        /*
+         * Invalidate Redis translation cache for all locales when saving
+         */
+        if ($this->model->exists) {
+            $modelType = $this->model->getMorphClass();
+            $modelId = $this->model->getKey();
+
+            // Get all locales from Translator
+            $locales = array_keys(\Golem15\Translate\Classes\Translator::instance()->getLocales());
+
+            foreach ($locales as $locale) {
+                $cacheKey = sprintf('translation:%s:%s:%s', $modelType, $modelId, $locale);
+                \Cache::forget($cacheKey);
+            }
+        }
     }
 
     /**

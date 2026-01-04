@@ -286,11 +286,31 @@ class TranslatableModel extends TranslatableBehavior
             return $this->translatableAttributes[$locale] = [];
         }
 
+        // Build cache key for Redis
+        $cacheKey = sprintf(
+            'translation:%s:%s:%s',
+            $this->model->getMorphClass(),
+            $this->model->getKey(),
+            $locale
+        );
+
+        // Check Redis cache FIRST (before accessing relationship)
+        $cached = \Cache::get($cacheKey);
+        if ($cached !== null) {
+            return $this->translatableOriginals[$locale] =
+                   $this->translatableAttributes[$locale] =
+                   $cached;
+        }
+
+        // Load from database only if cache miss
         $obj = $this->model->translations->first(function ($value, $key) use ($locale) {
             return $value->attributes['locale'] === $locale;
         });
 
         $result = $obj ? json_decode($obj->attribute_data, true) : [];
+
+        // Store in Redis with 1 hour TTL
+        \Cache::put($cacheKey, $result, 3600);
 
         return $this->translatableOriginals[$locale] = $this->translatableAttributes[$locale] = $result;
     }
