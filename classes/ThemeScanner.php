@@ -7,6 +7,7 @@ use Cms\Classes\Page;
 use Cms\Classes\Partial;
 use Cms\Classes\Theme;
 use Event;
+use File;
 use System\Models\MailTemplate;
 use Golem15\Translate\Classes\Translator;
 use Golem15\Translate\Models\Message;
@@ -55,6 +56,7 @@ class ThemeScanner
 
         $this->scanThemeConfigForMessages();
         $this->scanThemeTemplatesForMessages();
+        $this->scanPluginTemplatesForMessages();
         $this->scanMailTemplatesForMessages();
     }
 
@@ -116,6 +118,45 @@ class ThemeScanner
         foreach (Partial::all() as $partial) {
             $messages = array_merge($messages, $this->parseContent($partial->markup));
         }
+
+        Message::importMessages($messages);
+    }
+
+    public function scanPluginTemplatesForMessages()
+    {
+        $messages = [];
+
+        $pluginsPath = base_path('plugins');
+        if (!is_dir($pluginsPath)) {
+            return;
+        }
+
+        // Robust: scan any .htm file under plugins/*/*/components/
+        foreach (File::directories($pluginsPath) as $authorDir) {
+            foreach (File::directories($authorDir) as $pluginDir) {
+                $componentsDir = $pluginDir . DIRECTORY_SEPARATOR . 'components';
+                if (!is_dir($componentsDir)) {
+                    continue;
+                }
+
+                foreach (File::allFiles($componentsDir) as $file) {
+                    if (strtolower($file->getExtension()) !== 'htm') {
+                        continue;
+                    }
+
+                    $contents = File::get($file->getPathname());
+                    if ($contents !== null && $contents !== '') {
+                        // Avoid O(n^2) array_merge in loops
+                        foreach ($this->parseContent($contents) as $msg) {
+                            $messages[] = $msg;
+                        }
+                    }
+                }
+            }
+        }
+
+        // Optional but usually good: de-dupe before import
+        $messages = array_values(array_unique($messages));
 
         Message::importMessages($messages);
     }

@@ -63,4 +63,26 @@ return [
 
     'redirectStatus' => env('TRANSLATE_REDIRECT_STATUS', 302),
 
+    /*
+    |--------------------------------------------------------------------------
+    | Browser Language Detection
+    |--------------------------------------------------------------------------
+    |
+    | Automatically detect visitor's browser language from Accept-Language
+    | header and apply if no manual selection has been made. Only applies
+    | to non-authenticated users without saved preferences.
+    |
+    */
+
+    'browserDetection' => [
+        // Enable/disable feature globally
+        'enabled' => env('TRANSLATE_BROWSER_DETECTION', true),
+
+        // Cookie name for manual selection tracking
+        'manualSelectionCookie' => 'locale_manually_set',
+
+        // Cookie expiry in minutes (default: 365 days)
+        'manualSelectionExpiry' => 525600,
+    ],
+
 ];
