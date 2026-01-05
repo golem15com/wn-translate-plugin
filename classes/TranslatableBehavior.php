@@ -339,8 +339,8 @@ abstract class TranslatableBehavior extends ExtensionBase
             $modelType = $this->model->getMorphClass();
             $modelId = $this->model->getKey();
 
-            // Get all locales from Translator
-            $locales = array_keys(\Golem15\Translate\Classes\Translator::instance()->getLocales());
+            // Get all enabled locales from Locale model
+            $locales = array_keys(\Golem15\Translate\Models\Locale::listEnabled());
 
             foreach ($locales as $locale) {
                 $cacheKey = sprintf('translation:%s:%s:%s', $modelType, $modelId, $locale);
