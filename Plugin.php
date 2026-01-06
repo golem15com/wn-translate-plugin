@@ -196,6 +196,23 @@ class Plugin extends PluginBase
         Event::listen('backend.form.extendFieldsBefore', function ($widget) {
             EventRegistry::instance()->registerFormFieldReplacements($widget);
         }, -1);
+
+        \System\Models\MailTemplate::extend(function ($model) {
+            // FIX: Pass complete array directly to addDynamicProperty - don't try to reassign
+            // The issue was that array_merge() result assignment fails after addDynamicProperty()
+            $model->addDynamicProperty('translatable', [
+                'subject@create',   // Context-specific for create form
+                'subject@update',   // Context-specific for update form
+                'description',
+                'content_html',
+                'content_text'
+            ]);
+
+            // FIX: Add guard to prevent duplicate behavior extension on repeated instantiation
+            if (!$model->isClassExtendedWith('Golem15\Translate\Behaviors\TranslatableModel')) {
+                $model->extendClassWith('Golem15\Translate\Behaviors\TranslatableModel');
+            }
+        });
     }
 
     /**
@@ -261,10 +278,6 @@ class Plugin extends PluginBase
         // Add translation support to file models
         File::extend(function ($model) {
             $this->extendModel($model, 'model', ['title', 'description']);
-        });
-
-        MailTemplate::extend(function ($model) {
-            $this->extendModel($model, 'model', ['subject', 'description', 'content_html', 'content_text']);
         });
 
         // Load localized version of mail templates (akin to localized CMS content files)
