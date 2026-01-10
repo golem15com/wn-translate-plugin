@@ -25,15 +25,20 @@ class LocaleMiddleware
         if (!$translator->loadLocaleFromRequest()) {
             // Priority 2: Check authenticated user's preferred locale from database
             if (!$this->loadLocaleFromUser($translator)) {
-                // Priority 2.5: Check browser language (only if not manually set)
-                if (!$this->hasManualLocaleSelection($request)) {
-                    $this->loadLocaleFromBrowser($translator, $request);
+                $localeLoaded = false;
+
+                // Priority 3: Check for manual selection (session)
+                if ($this->hasManualLocaleSelection($request)) {
+                    $localeLoaded = $translator->loadLocaleFromSession();
                 }
 
-                // Priority 3 & 4: Session or default locale (original behavior)
-                if (Config::get('golem15.translate::prefixDefaultLocale')) {
-                    $translator->loadLocaleFromSession();
-                } else {
+                // Priority 4: Browser language detection (only if no manual selection)
+                if (!$localeLoaded) {
+                    $localeLoaded = $this->loadLocaleFromBrowser($translator, $request);
+                }
+
+                // Priority 5: Default locale (fallback if nothing else worked)
+                if (!$localeLoaded) {
                     $translator->setLocale($translator->getDefaultLocale());
                 }
             }
