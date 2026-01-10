@@ -28,6 +28,7 @@
         this.$copyDropdown = $('ul.ml-copy-dropdown-menu', this.$el)
         this.$dropdown     = $('ul.ml-dropdown-menu', this.$el)
         this.$placeholder  = $(this.options.placeholderField)
+        this.$activeLocaleInput = null
 
         /*
          * Init locale
@@ -35,6 +36,11 @@
         this.activeLocale = this.options.defaultLocale
         this.$activeField = this.getLocaleElement(this.activeLocale)
         this.$activeButton.text(this.activeLocale)
+
+        /*
+         * Init active locale tracking input
+         */
+        this.initActiveLocaleInput()
 
         this.$copyDropdown.on('click', '[data-copy-locale]', function(_event) {
             var currentLocale = self.activeLocale
@@ -126,6 +132,38 @@
 
         this.$placeholder.val(this.getLocaleValue(locale))
         this.$el.trigger('setLocale.oc.multilingual', [locale, this.getLocaleValue(locale)])
+
+        // Update active locale tracking input
+        this.updateActiveLocaleInput(locale)
+    }
+
+    MultiLingual.prototype.initActiveLocaleInput = function() {
+        // Get field name from placeholder field
+        var placeholderName = this.$placeholder.attr('name')
+        if (!placeholderName) return
+
+        // Create hidden input name: RLTranslateActiveLocale[fieldName]
+        var inputName = 'RLTranslateActiveLocale[' + placeholderName + ']'
+
+        // Check if input already exists
+        this.$activeLocaleInput = $('input[name="' + inputName + '"]')
+
+        // If not, create it
+        if (this.$activeLocaleInput.length === 0) {
+            this.$activeLocaleInput = $('<input>')
+                .attr('type', 'hidden')
+                .attr('name', inputName)
+                .insertAfter(this.$placeholder)
+        }
+
+        // Set initial value
+        this.$activeLocaleInput.val(this.activeLocale)
+    }
+
+    MultiLingual.prototype.updateActiveLocaleInput = function(locale) {
+        if (this.$activeLocaleInput && this.$activeLocaleInput.length > 0) {
+            this.$activeLocaleInput.val(locale)
+        }
     }
 
     // MULTILINGUAL PLUGIN DEFINITION

@@ -185,6 +185,14 @@ trait MLControl
      */
     public function getLocaleSaveValue($value)
     {
+        /*
+         * Call rewritePostValues() if implemented by widget
+         * This sets the correct locale context before processing translations
+         */
+        if (method_exists($this, 'rewritePostValues')) {
+            $this->rewritePostValues();
+        }
+
         $localeData = $this->getLocaleSaveData();
         $key = $this->valueFrom ?: $this->fieldName;
 

@@ -52,6 +52,37 @@ class MLText extends FormWidgetBase
     }
 
     /**
+     * Rewrites post values to set the correct locale context before save
+     * Reads the active locale from RLTranslateActiveLocale[fieldName]
+     */
+    protected function rewritePostValues()
+    {
+        $data = post('RLTranslateActiveLocale');
+        if (!$data) {
+            return;
+        }
+
+        // Find active locale by searching for key ending with [fieldName]
+        // POST has "Achievement[name]" but we only know "name"
+        $activeLocale = null;
+        foreach ($data as $key => $value) {
+            if (str_ends_with($key, '[' . $this->fieldName . ']')) {
+                $activeLocale = $value;
+                break;
+            }
+        }
+
+        if (!$activeLocale) {
+            return;
+        }
+
+        // Set model's translatable context to active locale
+        if ($this->model && method_exists($this->model, 'translateContext')) {
+            $this->model->translateContext($activeLocale);
+        }
+    }
+
+    /**
      * {@inheritDoc}
      */
     protected function loadAssets()
