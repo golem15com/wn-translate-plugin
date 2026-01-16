@@ -120,9 +120,9 @@ class EventRegistry
         }
 
         if (
-            !$model->isClassExtendedWith('Golem15.Translate.Behaviors.TranslatableModel') &&
-            !$model->isClassExtendedWith('Golem15.Translate.Behaviors.TranslatablePage') &&
-            !$model->isClassExtendedWith('Golem15.Translate.Behaviors.TranslatableCmsObject')
+            !$model->isClassExtendedWith('golem15.translate.Behaviors.TranslatableModel') &&
+            !$model->isClassExtendedWith('golem15.translate.Behaviors.TranslatablePage') &&
+            !$model->isClassExtendedWith('golem15.translate.Behaviors.TranslatableCmsObject')
         ) {
             return;
         }

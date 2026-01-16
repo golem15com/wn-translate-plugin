@@ -3,7 +3,7 @@
 # ===================================
 
 # Model List Column configuration
-list: ~/plugins/golem15/translate/models/locale/columns.yaml
+list: ~/plugins/winter/translate/models/locale/columns.yaml
 
 # Model Class name
 modelClass: Golem15\Translate\Models\Locale

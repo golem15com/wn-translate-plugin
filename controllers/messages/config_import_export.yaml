@@ -1,9 +1,9 @@
 import:
     title: 'golem15.translate::lang.messages.import_messages_link'
     modelClass: Golem15\Translate\Models\MessageImport
-    redirect: golem15/translate/messages
+    redirect: winter/translate/messages
 
 export:
     title: 'golem15.translate::lang.messages.export_messages_link'
     modelClass: Golem15\Translate\Models\MessageExport
-    redirect: golem15/translate/messages
+    redirect: winter/translate/messages

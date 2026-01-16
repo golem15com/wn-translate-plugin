@@ -12,12 +12,12 @@
         class="btn oc-icon-refresh"><?= e(trans('golem15.translate::lang.messages.scan_messages_link')) ?>
     </a>
     <a
-        href="<?= Backend::url('golem15/translate/messages/import') ?>"
+        href="<?= Backend::url('winter/translate/messages/import') ?>"
         class="btn oc-icon-sign-in">
         <?= e(trans('golem15.translate::lang.messages.import_messages_link')) ?>
     </a>
     <a
-        href="<?= Backend::url('golem15/translate/messages/export') ?>"
+        href="<?= Backend::url('winter/translate/messages/export') ?>"
         class="btn oc-icon-sign-out">
         <?= e(trans('golem15.translate::lang.messages.export_messages_link')) ?>
     </a>
