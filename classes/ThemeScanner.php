@@ -216,7 +216,7 @@ class ThemeScanner
             if (
                 $var_token_started
                 && $tokens[$i]->typeString === 'STRING_TYPE'
-                && $tokens[$i+1]->typeString === 'PUNCTUATION_TYPE'
+                && in_array($tokens[$i+1]->typeString, ['PUNCTUATION_TYPE', 'OPERATOR_TYPE'])
                 && $tokens[$i+1]->getValue() === '|'
                 && $tokens[$i+2]->typeString === 'NAME_TYPE'
                 && in_array($tokens[$i+2]->getValue(), $this->getFilters())

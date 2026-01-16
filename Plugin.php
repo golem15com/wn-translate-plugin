@@ -13,6 +13,8 @@ use Event;
 use Golem15\Translate\Console\PluginTranslate;
 use Golem15\Translate\Console\PluginTranslateAI;
 use Golem15\Translate\Console\ThemeTranslate;
+use Golem15\Translate\Console\ExportCommand;
+use Golem15\Translate\Console\ImportCommand;
 use Lang;
 use Model;
 use System\Classes\CombineAssets;
@@ -177,7 +179,9 @@ class Plugin extends PluginBase
         $this->commands([
             PluginTranslate::class,
             PluginTranslateAI::class,
-            ThemeTranslate::class
+            ThemeTranslate::class,
+            ExportCommand::class,
+            ImportCommand::class,
         ]);
     }
 
