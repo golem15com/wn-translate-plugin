@@ -1,6 +1,6 @@
 <?php namespace Golem15\Translate\Tests;
 
-if (class_exists('System\Tests\Bootstrap\PluginTestCase')) {
+if (class_exists('\System\Tests\Bootstrap\PluginTestCase')) {
     class BaseTestCase extends \System\Tests\Bootstrap\PluginTestCase
     {
     }
@@ -13,6 +13,6 @@ if (class_exists('System\Tests\Bootstrap\PluginTestCase')) {
 abstract class TranslatePluginTestCase extends BaseTestCase
 {
     protected $refreshPlugins = [
-        'Golem15.Translate',
+        'golem15.translate',
     ];
 }

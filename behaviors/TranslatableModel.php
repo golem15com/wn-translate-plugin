@@ -13,7 +13,7 @@ use Golem15\Translate\Classes\TranslatableBehavior;
  *
  * In the model class definition:
  *
- *   public $implement = ['@Golem15.Translate.Behaviors.TranslatableModel'];
+ *   public $implement = ['@golem15.translate.Behaviors.TranslatableModel'];
  *
  *   public $translatable = ['name', 'content'];
  *
@@ -26,8 +26,32 @@ class TranslatableModel extends TranslatableBehavior
 
         $model->morphMany['translations'] = [
             'Golem15\Translate\Models\Attribute',
-            'name' => 'model'
+            'name' => 'model',
         ];
+
+        $this->model->bindEvent('model.afterDelete', [$this, 'afterModelDelete']);
+    }
+
+    public function afterModelDelete()
+    {
+        if ($this->model->methodExists('isSoftDelete') && $this->model->isSoftDelete()) {
+            return;
+        }
+
+        $model_id = $this->model->getKey();
+        $model_type = $this->getClass();
+
+        // delete translation attributes for this record
+        Db::table('winter_translate_attributes')
+            ->where('model_id', $model_id)
+            ->where('model_type', $model_type)
+            ->delete();
+
+        // delete translation indexes for this record
+        Db::table('winter_translate_indexes')
+            ->where('model_id', $model_id)
+            ->where('model_type', $model_type)
+            ->delete();
     }
 
     /**
@@ -47,11 +71,11 @@ class TranslatableModel extends TranslatableBehavior
 
         // Separate query into two separate queries for improved performance
         // @see https://github.com/rainlab/translate-plugin/pull/623
-        $translateIndexes = Db::table('golem15_translate_indexes')
-            ->where('golem15_translate_indexes.model_type', '=', $this->getClass())
-            ->where('golem15_translate_indexes.locale', '=', $locale)
-            ->where('golem15_translate_indexes.item', $index)
-            ->where('golem15_translate_indexes.value', $operator, $value)
+        $translateIndexes = Db::table('winter_translate_indexes')
+            ->where('winter_translate_indexes.model_type', '=', $this->getClass())
+            ->where('winter_translate_indexes.locale', '=', $locale)
+            ->where('winter_translate_indexes.item', $index)
+            ->where('winter_translate_indexes.value', $operator, $value)
             ->pluck('model_id');
 
         if ($translateIndexes->count()) {
@@ -76,7 +100,7 @@ class TranslatableModel extends TranslatableBehavior
         if (!$locale) {
             $locale = $this->translatableContext;
         }
-        $indexTableAlias = 'golem15_translate_indexes_' . $index . '_' . $locale;
+        $indexTableAlias = 'winter_translate_indexes_' . $index . '_' . $locale;
 
         $query->select(
             $this->model->getTable().'.*',
@@ -99,7 +123,7 @@ class TranslatableModel extends TranslatableBehavior
      */
     protected function joinTranslateIndexesTable($query, $locale, $index, $indexTableAlias)
     {
-        $joinTableWithAlias = 'golem15_translate_indexes as ' . $indexTableAlias;
+        $joinTableWithAlias = 'winter_translate_indexes as ' . $indexTableAlias;
         // check if table with same name and alias is already joined
         if (collect($query->getQuery()->joins)->contains('table', $joinTableWithAlias)) {
             return $query;
@@ -178,7 +202,7 @@ class TranslatableModel extends TranslatableBehavior
     {
         $data = json_encode($this->translatableAttributes[$locale], JSON_UNESCAPED_UNICODE);
 
-        $obj = Db::table('golem15_translate_attributes')
+        $obj = Db::table('winter_translate_attributes')
             ->where('locale', $locale)
             ->where('model_id', $this->model->getKey())
             ->where('model_type', $this->getClass());
@@ -187,7 +211,7 @@ class TranslatableModel extends TranslatableBehavior
             $obj->update(['attribute_data' => $data]);
         }
         else {
-            Db::table('golem15_translate_attributes')->insert([
+            Db::table('winter_translate_attributes')->insert([
                 'locale' => $locale,
                 'model_id' => $this->model->getKey(),
                 'model_type' => $this->getClass(),
@@ -217,7 +241,7 @@ class TranslatableModel extends TranslatableBehavior
 
             $value = array_get($data, $attribute);
 
-            $obj = Db::table('golem15_translate_indexes')
+            $obj = Db::table('winter_translate_indexes')
                 ->where('locale', $locale)
                 ->where('model_id', $this->model->getKey())
                 ->where('model_type', $this->getClass())
@@ -236,7 +260,7 @@ class TranslatableModel extends TranslatableBehavior
                 $obj->update(['value' => $value]);
             }
             else {
-                Db::table('golem15_translate_indexes')->insert([
+                Db::table('winter_translate_indexes')->insert([
                     'locale' => $locale,
                     'model_id' => $this->model->getKey(),
                     'model_type' => $this->getClass(),

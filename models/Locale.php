@@ -21,7 +21,7 @@ class Locale extends Model
     /**
      * @var string The database table used by the model.
      */
-    public $table = 'golem15_translate_locales';
+    public $table = 'winter_translate_locales';
 
     /**
      * @var array Validation rules
@@ -29,6 +29,15 @@ class Locale extends Model
     public $rules = [
         'code' => 'required',
         'name' => 'required',
+    ];
+
+    /**
+     * @var array Attributes that are mass assignable
+     */
+    public $fillable = [
+        'code',
+        'name',
+        'is_enabled',
     ];
 
     public $timestamps = false;
@@ -58,6 +67,11 @@ class Locale extends Model
         if ($this->is_default) {
             $this->makeDefault();
         }
+    }
+
+    public function afterSave()
+    {
+        self::clearCache();
     }
 
     public function beforeDelete()
@@ -90,6 +104,9 @@ class Locale extends Model
 
         $this->newQuery()->where('id', $this->id)->update(['is_default' => true]);
         $this->newQuery()->where('id', '<>', $this->id)->update(['is_default' => false]);
+
+        self::$defaultLocale = null;
+        Cache::forget('golem15.translate.defaultLocale');
     }
 
     /**
@@ -221,6 +238,8 @@ class Locale extends Model
      */
     public static function clearCache()
     {
+        self::$cacheListAvailable = null;
+        self::$cacheListEnabled = null;
         Cache::forget('golem15.translate.locales');
         Cache::forget('golem15.translate.defaultLocale');
     }

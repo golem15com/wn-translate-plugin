@@ -47,7 +47,7 @@ class EventRegistryTest extends \Golem15\Translate\Tests\TranslatePluginTestCase
 class FormTestModel extends Model
 {
     public $implement = [
-        'Golem15.Translate.Behaviors.TranslatableModel',
+        'golem15.translate.Behaviors.TranslatableModel',
     ];
 
     public $translatable = [];

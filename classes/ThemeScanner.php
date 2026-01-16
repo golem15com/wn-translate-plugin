@@ -14,7 +14,7 @@ use Golem15\Translate\Models\Message;
 /**
  * Theme scanner class
  *
- * @package golem15\translate
+ * @package Golem15\Translate
  * @author Alexey Bobkov, Samuel Georges
  */
 class ThemeScanner
@@ -141,7 +141,7 @@ class ThemeScanner
      * @param  string $content
      * @return array
      */
-    protected function parseContent($content)
+    public function parseContent($content)
     {
         $messages = [];
         if ($content) {

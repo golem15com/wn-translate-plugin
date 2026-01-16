@@ -45,8 +45,8 @@ class Plugin extends PluginBase
             'description' => 'golem15.translate::lang.plugin.description',
             'author'      => 'Winter CMS',
             'icon'        => 'icon-language',
-            'homepage'    => 'https://github.com/golem15/wn-translate-plugin',
-            'replaces'    => ['RainLab.Translate' => '<= 1.9.0'],
+            'homepage'    => 'https://github.com/wintercms/wn-translate-plugin',
+            'replaces'    => ['Winter.Translate' => '<= 2.1.0' ],
         ];
     }
 
@@ -144,13 +144,15 @@ class Plugin extends PluginBase
     public function registerFormWidgets(): array
     {
         return [
-            \Golem15\Translate\FormWidgets\MLText::class           => 'mltext',
-            \Golem15\Translate\FormWidgets\MLTextarea::class       => 'mltextarea',
-            \Golem15\Translate\FormWidgets\MLRichEditor::class     => 'mlricheditor',
+            \Golem15\Translate\FormWidgets\MLBlocks::class => 'mlblocks',
             \Golem15\Translate\FormWidgets\MLMarkdownEditor::class => 'mlmarkdowneditor',
-            \Golem15\Translate\FormWidgets\MLRepeater::class       => 'mlrepeater',
-            \Golem15\Translate\FormWidgets\MLMediaFinder::class    => 'mlmediafinder',
-            \Golem15\Translate\FormWidgets\MLNestedForm::class     => 'mlnestedform',
+            \Golem15\Translate\FormWidgets\MLMediaFinder::class => 'mlmediafinder',
+            \Golem15\Translate\FormWidgets\MLNestedForm::class => 'mlnestedform',
+            \Golem15\Translate\FormWidgets\MLRepeater::class => 'mlrepeater',
+            \Golem15\Translate\FormWidgets\MLRichEditor::class => 'mlricheditor',
+            \Golem15\Translate\FormWidgets\MLText::class => 'mltext',
+            \Golem15\Translate\FormWidgets\MLTextarea::class => 'mltextarea',
+            \Golem15\Translate\FormWidgets\MLUrl::class => 'mlurl',
         ];
     }
 
@@ -178,7 +180,6 @@ class Plugin extends PluginBase
         $this->registerAssetBundles();
         $this->commands([
             PluginTranslate::class,
-            PluginTranslateAI::class,
             ThemeTranslate::class,
             ExportCommand::class,
             ImportCommand::class,
@@ -213,6 +214,11 @@ class Plugin extends PluginBase
      */
     protected function extendCmsModule(): void
     {
+        // Verify that the CMS module is installed and enabled before extending it
+        if (!class_exists('\Cms\Classes\Page') || !in_array('Cms', config('cms.loadModules'))) {
+            return;
+        }
+
         /*
          * Handle translated page URLs
          */

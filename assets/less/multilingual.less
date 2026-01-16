@@ -1,133 +1,185 @@
 @import "../../../../../modules/backend/assets/less/core/boot.less";
 
 @multilingual-btn-color: #555555;
+@copy-btn-right-offset: 41px;
+@copy-btn-top-offset: 28px;
 
 .field-multilingual {
     position: relative;
 
-    .ml-btn {
-        background: transparent;
-        position: absolute;
-        color: lighten(@multilingual-btn-color, 15%);
-        text-transform: uppercase;
-        font-size: 11px;
-        letter-spacing: 1px;
-        width: 44px;
-        padding-right: 0;
-        .box-shadow(none);
-        text-shadow: none;
-        z-index: 2;
+    .form-control:focus {
+        z-index: 20;
+    }
 
-        &:hover {
-            color: @multilingual-btn-color;
+    // Shared styles for both buttons
+    .ml-btn,
+    .ml-copy-btn {
+        .multilingual-button-style();
+    }
+
+    // Individual tweaks
+    .ml-copy-btn {
+        border-radius: 0;
+    }
+
+    .ml-dropdown,
+    .ml-copy-dropdown {
+        position: absolute;
+        height: 100%;
+        width: 42px;
+        top: 0;
+
+        &.ml-copy-dropdown {
+            right: @copy-btn-right-offset;
+        }
+
+        &:not(.ml-copy-dropdown) {
+            right: 0;
+        }
+    }
+    .dropdown.ml-dropdown.open > .dropdown-menu,
+    .dropdown.ml-copy-dropdown.open > .dropdown-menu {
+        top: @copy-btn-top-offset;
+    }
+
+
+    // Repeater-specific override
+    &.field-multilingual-repeater,
+    &.field-multilingual-nestedform {
+        .ml-btn,
+        .ml-copy-btn {
+            top: -36px;
+        }
+        .dropdown.ml-dropdown.open > .dropdown-menu,
+        .dropdown.ml-copy-dropdown.open > .dropdown-menu {
+            top: -10px;
         }
     }
 
-    &.field-multilingual-text {
-        .form-control {
-            padding-right: 44px;
+
+    // media finder specific stuff
+    &.field-multilingual-mediafinder {
+
+        .dropdown.ml-dropdown.open > .dropdown-menu,
+        .dropdown.ml-copy-dropdown.open > .dropdown-menu {
+            top: -10px;
         }
-        .ml-btn {
-            right: 4px;
-            top: 50%;
-            margin-top: -44px;
-            height: 88px;
+
+        .dropdown.ml-dropdown:not(.open),// to stop it from overlapping with the upload button
+        .dropdown.ml-copy-dropdown:not(.open) {
+            height: 3px;
+        }
+        .ml-btn,
+        .ml-copy-btn {
+            top: -36px;
         }
     }
 
     &.field-multilingual-textarea {
         textarea {
-            // increase padding on the right so that the textarea content does not overlap with the language button
-            padding-right: 30px;
+            padding-right: 2rem;
         }
 
-        .ml-btn {
-            right: 13px;
-            top: 5px;
-            width: 24px;
-            text-align: right;
-            padding-left: 4px;
+        .ml-btn,
+        .ml-copy-btn {
+            border-bottom-right-radius: 0;
+            border-bottom-left-radius: .375rem;
         }
 
-        .ml-dropdown-menu {
-            top: 39px;
-            right: 1px;
-        }
-    }
-
-    &.field-multilingual-richeditor {
-        .ml-btn {
-            top: 43px;
-            right: 25px;
-            text-align: right;
-        }
-
-        .ml-dropdown-menu {
-            top: 74px;
-            right: 12px;
+        .ml-dropdown-menu,
+        .ml-copy-dropdown > .dropdown-menu {
+            top: @copy-btn-top-offset;
         }
     }
 
     &.field-multilingual-markdowneditor {
+        .mode-tab .editor-write,
+        .mode-split .editor-preview {
+            padding-right: 2rem;
+        }
+
+        .editor-code {
+            padding-right: inherit;
+        }
+    }
+
+    &.field-multilingual-markdowneditor,
+    &.field-multilingual-richeditor {
+        .ml-btn,
+        .ml-copy-btn {
+            height: 38px;
+        }
+        .dropdown.ml-dropdown.open > .dropdown-menu,
+        .dropdown.ml-copy-dropdown.open > .dropdown-menu {
+            top: 37px;
+        }
+        .dropdown.ml-dropdown:not(.open),
+        .dropdown.ml-copy-dropdown:not(.open) {
+            height: 3px;
+        }
         .ml-btn {
-            top: 43px;
-            right: 25px;
-            text-align: right;
+            border-radius: 0;
+            border-bottom-left-radius: .375rem;
         }
 
         .ml-dropdown-menu {
-            top: 74px !important;
-            right: 12px;
+            top: @copy-btn-top-offset;
+            right: 1px;
         }
     }
 
     &.field-multilingual-repeater,
     &.field-multilingual-nestedform {
-        .ml-btn {
-            top: -27px;
-            right: 11px;
-            text-align: right;
-        }
-
-        .ml-dropdown-menu {
-            top: 0;
+        .ml-dropdown-menu,
+        .ml-copy-dropdown > .dropdown-menu {
+            top: calc(@copy-btn-top-offset - 20px );
             right: 0;
         }
-
-        &.is-empty {
-            padding-top: 5px;
-
-            .ml-btn {
-                top: -10px;
-                right: 5px;
-                text-align: right;
-            }
-
-            .ml-dropdown-menu {
-                top: 15px;
-                right: -7px;
-            }
-        }
     }
 }
 
+// Fancy layout overrides
 .fancy-layout {
     .form-tabless-fields .field-multilingual {
-        .ml-btn {
-            color: rgba(255,255,255,.8);
+        .ml-btn,
+        .ml-copy-btn {
+            background-color: rgba(248, 246, 243, 0.75);
 
             &:hover {
-                color: rgba(255,255,255,1);
+                background-color: rgba(248, 246, 243, 0.85);
             }
         }
     }
-    .field-multilingual-text input.form-control {
-        padding-right: 44px;
-    }
 }
 
-.help-block.before-field + .field-multilingual.field-multilingual-textarea {
-    .ml-btn {
-        top: -41px;
+.multilingual-button-style() {
+    z-index: 12;
+    position: absolute;
+    top: 1px;
+    bottom: 1px;
+    right: 1px;
+
+    width: auto;
+    width: 44px;
+    height: 36px;
+
+    color: lighten(@multilingual-btn-color, 15%);
+    background-color: #F8F6F3;
+    box-shadow: none;
+
+    font-size: 11px;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+
+    margin: 0 !important;
+    padding: 0 12px;
+
+    border-top-left-radius: 0;
+    border-bottom-left-radius: 0;
+
+    transition: color 420ms ease;
+
+    &:hover {
+        color: @multilingual-btn-color;
     }
 }

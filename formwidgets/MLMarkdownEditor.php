@@ -2,17 +2,17 @@
 
 namespace Golem15\Translate\FormWidgets;
 
-use Backend\FormWidgets\SmartEditor;
+use Backend\FormWidgets\MarkdownEditor;
 use Golem15\Translate\Models\Locale;
 
 /**
  * ML Markdown Editor
  * Renders a multi-lingual Markdown editor.
  *
- * @package golem15\translate
+ * @package Golem15\Translate
  * @author Alexey Bobkov, Samuel Georges
  */
-class MLMarkdownEditor extends SmartEditor
+class MLMarkdownEditor extends MarkdownEditor
 {
     use \Golem15\Translate\Traits\MLControl;
 

@@ -9,7 +9,7 @@ use Golem15\Translate\Models\Message;
 
 class MigrateMessageCode extends Migration
 {
-    const TABLE_NAME = 'golem15_translate_messages';
+    const TABLE_NAME = 'winter_translate_messages';
 
     public function up()
     {
