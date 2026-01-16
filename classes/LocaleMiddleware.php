@@ -56,6 +56,9 @@ class LocaleMiddleware
     protected function loadLocaleFromUser($translator)
     {
         // Check if user is authenticated (cached check, no query)
+        if (!class_exists('\Auth')) {
+            return false;
+        }
         if (!\Auth::check()) {
             return false;
         }
