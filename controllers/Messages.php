@@ -34,8 +34,8 @@ class Messages extends Controller
         BackendMenu::setContext('Winter.System', 'system', 'settings');
         SettingsManager::setContext('golem15.translate', 'messages');
 
-        $this->addJs('/plugins/golem15/translate/assets/js/messages.js');
-        $this->addCss('/plugins/golem15/translate/assets/css/messages.css');
+        $this->addJs('/plugins/winter/translate/assets/js/messages.js');
+        $this->addCss('/plugins/winter/translate/assets/css/messages.css');
 
         $this->importColumns = MessageExport::getColumns();
         $this->exportColumns = MessageExport::getColumns();

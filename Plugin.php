@@ -10,6 +10,11 @@ use Cms\Models\ThemeData;
 use DOMDocument;
 use DOMElement;
 use Event;
+use Golem15\Translate\Console\PluginTranslate;
+use Golem15\Translate\Console\PluginTranslateAI;
+use Golem15\Translate\Console\ThemeTranslate;
+use Golem15\Translate\Console\ExportCommand;
+use Golem15\Translate\Console\ImportCommand;
 use Lang;
 use Model;
 use System\Classes\CombineAssets;
@@ -40,7 +45,7 @@ class Plugin extends PluginBase
             'description' => 'golem15.translate::lang.plugin.description',
             'author'      => 'Winter CMS',
             'icon'        => 'icon-language',
-            'homepage'    => 'https://github.com/wintercms/wn-translate-plugin',
+            'homepage'    => 'https://github.com/golem15/wn-translate-plugin',
             'replaces'    => ['Winter.Translate' => '<= 2.1.0' ],
         ];
     }
@@ -173,6 +178,12 @@ class Plugin extends PluginBase
         $this->registerConsoleCommand('translate.scan', \Golem15\Translate\Console\ScanCommand::class);
 
         $this->registerAssetBundles();
+        $this->commands([
+            PluginTranslate::class,
+            ThemeTranslate::class,
+            ExportCommand::class,
+            ImportCommand::class,
+        ]);
     }
 
     /**
@@ -278,6 +289,10 @@ class Plugin extends PluginBase
         // Add translation support to file models
         File::extend(function ($model) {
             $this->extendModel($model, 'model', ['title', 'description']);
+        });
+
+        MailTemplate::extend(function ($model) {
+            $this->extendModel($model, 'model', ['subject', 'description', 'content_html', 'content_text']);
         });
 
         // Load localized version of mail templates (akin to localized CMS content files)

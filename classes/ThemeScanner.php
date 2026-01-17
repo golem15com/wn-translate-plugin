@@ -197,24 +197,77 @@ class ThemeScanner
      * @param  string $content
      * @return array
      */
-    public function processStandardTags($content)
+    protected function getFilters()
     {
-        $messages = [];
-
-        $messages = self::getMessages(preg_quote("'"), $content);
-
-        return array_merge($messages, self::getMessages(preg_quote('"'), $content));
+        return [
+            '_',
+            '__',
+            'transRaw',
+            'transRawPlural',
+            'localeUrl'
+        ];
     }
 
     /**
-     * Apply regex on string to extract value to translate
-     * @param  string $quoteChar
+     * Get an array of Twig tokens
+     * @param  string $string
      * @return array
      */
-    protected static function getMessages($quoteChar, $content)
+    protected function findTwigTokensInString($string)
     {
-        preg_match_all('/\{\{\s*'.$quoteChar.'([^'.$quoteChar.']+)'.$quoteChar.'\s*\|\s*(?:localeUrl|transRaw|transRawPlural|_{1,2})(?:\(.*\)){0,1}\s*(?:\|[^|\s\}]+){0,}\s*\}\}/x', $content, $match);
+        $loader = new \Twig\Loader\ArrayLoader();
+        $env = new \Twig\Environment($loader);
+        $source = new \Twig\Source($string, 'test');
 
-        return $match[1] ?? [];
+        try {
+            $stream = $env->tokenize($source);
+        }
+        catch (\Exception $e) {
+            return [];
+        }
+
+        $tokens = [];
+        while (!$stream->isEOF()) {
+            $token = $stream->next();
+            $token->typeString = $token->typeToString($token->getType(), true);
+            $tokens[] = $token;
+        }
+        return $tokens;
+    }
+
+    /**
+     * Searches for strings to be translated within a given Twig string
+     * @param  string $content
+     * @return array
+     */
+    protected function processStandardTags($content)
+    {
+        $tokens = $this->findTwigTokensInString($content);
+
+        $translatable_strings = [];
+        $var_token_started = false;
+        for ($i = 0; $i < count($tokens); $i++) {
+            switch ($tokens[$i]->typeString) {
+                case 'VAR_START_TYPE':
+                    $var_token_started = true;
+                    continue 2;
+                case 'VAR_END_TYPE':
+                    $var_token_started = false;
+                    continue 2;
+            }
+            if (
+                $var_token_started
+                && $tokens[$i]->typeString === 'STRING_TYPE'
+                && in_array($tokens[$i+1]->typeString, ['PUNCTUATION_TYPE', 'OPERATOR_TYPE'])
+                && $tokens[$i+1]->getValue() === '|'
+                && $tokens[$i+2]->typeString === 'NAME_TYPE'
+                && in_array($tokens[$i+2]->getValue(), $this->getFilters())
+            ) {
+                $translatable_strings[] = stripslashes($tokens[$i]->getValue());
+                $i += 2;
+            }
+        }
+
+        return $translatable_strings;
     }
 }

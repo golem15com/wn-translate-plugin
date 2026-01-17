@@ -27,13 +27,11 @@ class LocaleMiddleware
             if (!$this->loadLocaleFromUser($translator)) {
                 $localeLoaded = false;
 
-                // Priority 3: Check for manual selection (session)
-                if ($this->hasManualLocaleSelection($request)) {
-                    $localeLoaded = $translator->loadLocaleFromSession();
-                }
+                // Priority 3: Check session (user's previous selection)
+                $localeLoaded = $translator->loadLocaleFromSession();
 
-                // Priority 4: Browser language detection (only if no manual selection)
-                if (!$localeLoaded) {
+                // Priority 4: Browser language detection (only for new visitors without session)
+                if (!$localeLoaded && !$this->hasManualLocaleSelection($request)) {
                     $localeLoaded = $this->loadLocaleFromBrowser($translator, $request);
                 }
 
@@ -56,6 +54,9 @@ class LocaleMiddleware
     protected function loadLocaleFromUser($translator)
     {
         // Check if user is authenticated (cached check, no query)
+        if (!class_exists('\Auth')) {
+            return false;
+        }
         if (!\Auth::check()) {
             return false;
         }
