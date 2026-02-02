@@ -26,6 +26,14 @@ $beforeCallback = function () {
         return;
     }
 
+    // Set manual selection cookie when URL has locale prefix
+    // This prevents browser detection from overriding explicit URL visits
+    \Cookie::queue(
+        \Config::get('golem15.translate::browserDetection.manualSelectionCookie', 'locale_manually_set'),
+        '1',
+        \Config::get('golem15.translate::browserDetection.manualSelectionExpiry', 525600)
+    );
+
     /*
      * Register routes
      */
