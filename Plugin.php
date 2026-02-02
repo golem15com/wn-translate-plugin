@@ -57,7 +57,8 @@ class Plugin extends PluginBase
     {
         return [
            \Golem15\Translate\Components\LocalePicker::class => 'localePicker',
-           \Golem15\Translate\Components\AlternateHrefLangElements::class => 'alternateHrefLangElements'
+           \Golem15\Translate\Components\AlternateHrefLangElements::class => 'alternateHrefLangElements',
+           \Golem15\Translate\Components\LocaleSuggestionBanner::class => 'localeSuggestionBanner',
         ];
     }
 
