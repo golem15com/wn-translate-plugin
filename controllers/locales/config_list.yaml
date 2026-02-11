@@ -12,7 +12,7 @@ modelClass: Golem15\Translate\Models\Locale
 title: golem15.translate::lang.locale.label_plural
 
 # Link URL for each record
-# recordUrl: winter/translate/locale/update/:id
+# recordUrl: golem15/translate/locale/update/:id
 
 recordOnClick: $.translateLocales.clickRecord(:id)
 
