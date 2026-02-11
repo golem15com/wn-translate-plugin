@@ -119,16 +119,7 @@ class EventRegistry
             return;
         }
 
-        if (
-            !$model->isClassExtendedWith('golem15.translate.Behaviors.TranslatableModel') &&
-            !$model->isClassExtendedWith('golem15.translate.Behaviors.TranslatablePage') &&
-            !$model->isClassExtendedWith('golem15.translate.Behaviors.TranslatableCmsObject')
-        ) {
-            return;
-        }
-
-
-        if (!$model->hasTranslatableAttributes() || $widget->isNested) {
+        if (!$model->methodExists('hasTranslatableAttributes') || !$model->hasTranslatableAttributes() || $widget->isNested) {
             return;
         }
 
