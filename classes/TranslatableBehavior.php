@@ -320,7 +320,9 @@ abstract class TranslatableBehavior extends ExtensionBase
          * Invalidate translation cache for all locales when saving
          */
         if ($this->model->exists) {
-            $modelType = $this->model->getMorphClass();
+            $modelType = method_exists($this->model, 'getMorphClass')
+                ? $this->model->getMorphClass()
+                : get_class($this->model);
             $modelId = $this->model->getKey();
 
             $locales = array_keys(\Golem15\Translate\Models\Locale::listEnabled());
