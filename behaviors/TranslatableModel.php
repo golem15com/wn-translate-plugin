@@ -32,6 +32,29 @@ class TranslatableModel extends TranslatableBehavior
         $this->model->bindEvent('model.afterDelete', [$this, 'afterModelDelete']);
     }
 
+    /**
+     * {@inheritDoc}
+     */
+    public function syncTranslatableAttributes()
+    {
+        parent::syncTranslatableAttributes();
+
+        /*
+         * Invalidate translation cache for all locales when saving
+         */
+        if ($this->model->exists) {
+            $modelType = $this->model->getMorphClass();
+            $modelId = $this->model->getKey();
+
+            $locales = array_keys(\Golem15\Translate\Models\Locale::listEnabled());
+
+            foreach ($locales as $locale) {
+                $cacheKey = sprintf('translation:%s:%s:%s', $modelType, $modelId, $locale);
+                \Cache::forget($cacheKey);
+            }
+        }
+    }
+
     public function afterModelDelete()
     {
         if ($this->model->methodExists('isSoftDelete') && $this->model->isSoftDelete()) {
