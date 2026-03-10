@@ -84,9 +84,9 @@ class Locale extends Model
     public function beforeUpdate()
     {
         if ($this->isDirty('is_default')) {
-            $this->makeDefault();
-
-            if (!$this->is_default) {
+            if ($this->is_default) {
+                $this->makeDefault();
+            } else {
                 throw new ValidationException(['is_default' => Lang::get('golem15.translate::lang.locale.unset_default', ['locale'=>$this->name])]);
             }
         }
