@@ -104,7 +104,7 @@ class LocaleMiddleware
         $acceptLanguage = $request->header('Accept-Language');
 
         if (!$acceptLanguage) {
-            \Log::debug('LocaleMiddleware: No Accept-Language header present');
+            // \Log::debug('LocaleMiddleware: No Accept-Language header present');
             return false;
         }
 
@@ -131,11 +131,11 @@ class LocaleMiddleware
             if (in_array($primaryLanguage, $enabledCodes)) {
                 $translator->setLocale($primaryLanguage, true);
 
-                \Log::info('LocaleMiddleware: Browser language detected and applied', [
-                    'detected' => $candidate,
-                    'locale' => $primaryLanguage,
-                    'ip' => $request->ip()
-                ]);
+                // \Log::info('LocaleMiddleware: Browser language detected and applied', [
+                //     'detected' => $candidate,
+                //     'locale' => $primaryLanguage,
+                //     'ip' => $request->ip()
+                // ]);
 
                 return true;
             }
