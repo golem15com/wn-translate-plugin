@@ -5,6 +5,12 @@ use Golem15\Translate\Models\MessageImport;
 
 class ImportMessageTest extends \Golem15\Translate\Tests\TranslatePluginTestCase
 {
+    public function setUp(): void
+    {
+        parent::setUp();
+        Message::truncate();
+    }
+
     public function testCanHandleEmptyImport()
     {
         $messageImport = new MessageImport();

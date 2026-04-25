@@ -7,6 +7,7 @@ use Winter\Storm\Halcyon\Datasource\FileDatasource;
 use Winter\Storm\Halcyon\Datasource\Resolver;
 use Golem15\Translate\Tests\Fixtures\Classes\TranslatablePage;
 use Golem15\Translate\Classes\ThemeScanner;
+use ReflectionMethod;
 
 class TranslatablePageTest extends \Golem15\Translate\Tests\TranslatePluginTestCase
 {
@@ -132,8 +133,10 @@ class TranslatablePageTest extends \Golem15\Translate\Tests\TranslatePluginTestC
             ],
         ];
 
+        $method = new ReflectionMethod(ThemeScanner::class, 'processStandardTags');
+
         foreach ($check_strings as $check) {
-            $this->assertEquals($scanner->processStandardTags($check[0]), $check[1]);
+            $this->assertEquals($method->invoke($scanner, $check[0]), $check[1]);
         }
     }
 }
