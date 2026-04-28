@@ -32,10 +32,29 @@ class ImportCommand extends Command
         $path = $this->option('path') ?: base_path($defaultFile);
         $overwrite = $this->option('overwrite');
 
-        if (!file_exists($path)) {
+        // UTIL-04 / TRANSLATE-004: containment check — only allow paths inside base_path().
+        $resolvedPath = realpath($path);
+        $allowedRoot = realpath(base_path());
+        if ($resolvedPath === false) {
             $this->output->error("File not found: {$path}");
             return 1;
         }
+        if ($allowedRoot === false) {
+            $this->output->error("Path is outside the project root: {$path}");
+            return 1;
+        }
+        $allowedPrefix = $allowedRoot . DIRECTORY_SEPARATOR;
+        if ($resolvedPath !== $allowedRoot
+            && strncmp($resolvedPath, $allowedPrefix, strlen($allowedPrefix)) !== 0
+        ) {
+            $this->output->error("Path is outside the project root: {$path}");
+            return 1;
+        }
+        if (!is_file($resolvedPath)) {
+            $this->output->error("Path is not a regular file: {$path}");
+            return 1;
+        }
+        $path = $resolvedPath;
 
         if ($format === 'csv') {
             $data = $this->parseCsv($path);
@@ -89,11 +108,12 @@ class ImportCommand extends Command
                     }
                 }
             } else {
-                Message::create([
+                $message = Message::create([
                     'code' => $code,
                     'message_data' => $messageData,
-                    'found' => true,
                 ]);
+                $message->found = true;
+                $message->save();
                 $created++;
             }
         }

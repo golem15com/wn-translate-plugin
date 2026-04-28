@@ -6,6 +6,17 @@ use Golem15\Translate\Models\Locale;
 
 class ExportMessageTest extends \Golem15\Translate\Tests\TranslatePluginTestCase
 {
+    public function setUp(): void
+    {
+        parent::setUp();
+        Message::truncate();
+    }
+
+    public function tearDown(): void
+    {
+        Locale::reguard();
+        parent::tearDown();
+    }
 
     public function testCanHandleNoMessages()
     {
@@ -82,7 +93,9 @@ class ExportMessageTest extends \Golem15\Translate\Tests\TranslatePluginTestCase
 
     public function testGetColumns()
     {
+        Locale::truncate();
         Locale::unguard();
+        Locale::create(['code' => 'en', 'name' => 'English', 'is_default' => true, 'is_enabled' => true]);
         Locale::create(['code' => 'de', 'name' => 'German', 'is_enabled' => true]);
 
         $columns = MessageExport::getColumns();

@@ -20,9 +20,17 @@ class Message extends Model
     public $table = 'winter_translate_messages';
 
     /**
-     * @var array Guarded fields
+     * @var array Mass-assignable attributes (UTIL-01 / TRANSLATE-001).
      */
-    protected $guarded = [];
+    protected $fillable = [
+        'code',
+        'message_data',
+    ];
+
+    /**
+     * @var array Guarded fields — reset because we use $fillable instead.
+     */
+    protected $guarded = ['*'];
 
     /**
      * @var array List of attribute names which are json encoded and decoded from the database.
