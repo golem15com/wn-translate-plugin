@@ -44,7 +44,9 @@ class ImportCommand extends Command
             return 1;
         }
         $allowedPrefix = $allowedRoot . DIRECTORY_SEPARATOR;
-        if (strncmp($resolvedPath, $allowedPrefix, strlen($allowedPrefix)) !== 0) {
+        if ($resolvedPath !== $allowedRoot
+            && strncmp($resolvedPath, $allowedPrefix, strlen($allowedPrefix)) !== 0
+        ) {
             $this->output->error("Path is outside the project root: {$path}");
             return 1;
         }

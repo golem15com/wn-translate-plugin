@@ -129,6 +129,36 @@ class PathTraversalTest extends \Golem15\Translate\Tests\TranslatePluginTestCase
     }
 
     /**
+     * UTIL-04: ImportCommand surfaces the "not a regular file" error (not the
+     * misleading "outside the project root" one) when --path resolves to the
+     * project root itself. Pins the strncmp() containment fix that exempts
+     * an exact-root match from the prefix check so is_file() can take over.
+     *
+     * @test
+     * @group security
+     */
+    public function test_translate_004_import_path_equal_to_root(): void
+    {
+        [$exitCode, $output] = $this->runImportCommand(['--path' => base_path()]);
+
+        $this->assertNotSame(
+            0,
+            $exitCode,
+            'UTIL-04: ImportCommand must reject --path values that point at the project root with a non-zero exit code.'
+        );
+        $this->assertStringContainsString(
+            'not a regular file',
+            $output,
+            'UTIL-04: --path equal to base_path() must produce the "not a regular file" error from the is_file() guard.'
+        );
+        $this->assertStringNotContainsString(
+            'outside the project root',
+            $output,
+            'UTIL-04: --path equal to base_path() must not be misreported as "outside the project root".'
+        );
+    }
+
+    /**
      * Run the ImportCommand in isolation via Symfony's CommandTester.
      * Avoids relying on the Artisan command registry being populated in the
      * PluginTestCase boot sequence.
