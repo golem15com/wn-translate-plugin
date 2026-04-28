@@ -116,7 +116,8 @@ None.
 
 `ImportCommand::handle()` previously accepted any file path via `--path` without validation, allowing reading of arbitrary files (e.g., `/etc/passwd`). The fix adds:
 1. `realpath()` resolution of the provided path
-2. `str_starts_with()` containment check against `base_path()`
+2. A `strncmp()`-based containment check using the computed `base_path()` prefix to ensure the resolved path stays within the project root
+3. `is_file()` check on the resolved path so directory inputs are rejected before they bubble into `parseJson` / `parseCsv`
 
 ### Migration steps
 
@@ -130,4 +131,4 @@ None.
 ### Verification
 
 - Run `php artisan translate:import --path=/etc/hosts` -- should return "Path is outside the project root" error.
-- Run `vendor/bin/phpunit --configuration plugins/golem15/translate/phpunit.xml --group security` -- `test_translate_004_import_path` should PASS after fix.
+- Run `vendor/bin/phpunit --configuration plugins/golem15/translate/phpunit.xml --group security` -- `test_translate_004_import_path_out_of_root` and `test_translate_004_import_path_must_be_file` should PASS after fix.

@@ -1,33 +1,35 @@
 <?php namespace Golem15\Translate\Tests\Security;
 
 /**
- * Security PoC tests for HIGH finding TRANSLATE-001.
+ * Security regression tests for HIGH finding TRANSLATE-001.
  * Each test method is named test_translate_NNN_<short_slug> and references
  * the finding in .planning/audit/plugins/golem15/translate/FINDINGS.md.
  *
  * @group security
  *
  * Per Phase 7 D-20: PoC tests use HTTP-only + unit fidelity.
- * These tests MUST FAIL on current code (red-bar regression locks).
- * The remediation milestone's fixes will turn them green.
+ * These tests assert that the remediation remains in place and should pass
+ * while the code is fixed, failing only if the vulnerable behavior is
+ * reintroduced.
  */
 class AccessControlTest extends \Golem15\Translate\Tests\TranslatePluginTestCase
 {
     /**
-     * TRANSLATE-001: Message model uses $guarded = [] disabling mass-assignment protection.
+     * TRANSLATE-001: Message model must not use $guarded = [] because that
+     * disables mass-assignment protection.
      *
-     * The Message model declares `protected $guarded = [];` which means ANY attribute
-     * can be mass-assigned via fill(). While direct public-facing routes don't call
+     * A declaration of `protected $guarded = [];` means ANY attribute can be
+     * mass-assigned via fill(). While direct public-facing routes don't call
      * Message::create() with user data, the backend Messages controller's
      * data.updateRecord handler passes raw AJAX POST data. An attacker with
      * manage_messages permission could mass-assign arbitrary columns (code,
      * message_data, found) to corrupt the translation cache and inject
      * attacker-controlled strings into all front-end pages.
      *
-     * EXPECTATION (post-fix): Message model uses $guarded = ['*'] or specific
+     * EXPECTATION: The fixed model uses $guarded = ['*'] or a specific
      * $fillable whitelist, preventing mass-assignment of sensitive columns.
-     * TODAY (pre-fix): $guarded = [] disables all mass-assignment protection.
-     * This assertion FAILS because $guarded is set to empty array.
+     * This regression test should pass while that protection remains in place
+     * and fail only if $guarded = [] is reintroduced.
      *
      * @test
      * @group security
