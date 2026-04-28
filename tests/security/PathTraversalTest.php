@@ -11,10 +11,8 @@ use Symfony\Component\Console\Tester\CommandTester;
  *
  * @group security
  */
-class PathTraversalTest extends \PluginTestCase
+class PathTraversalTest extends \Golem15\Translate\Tests\TranslatePluginTestCase
 {
-    protected $refreshPlugins = ['Golem15.Translate'];
-
     /**
      * UTIL-03: TranslationScanner::readLocale rejects path-traversal and malformed locale codes.
      *
@@ -73,7 +71,15 @@ class PathTraversalTest extends \PluginTestCase
         }
 
         $outsidePath = $resolvedOutside . '/golem15-translate-out-of-root-' . uniqid() . '.json';
-        file_put_contents($outsidePath, '[]');
+        $bytesWritten = file_put_contents($outsidePath, '[]');
+        $this->assertNotFalse(
+            $bytesWritten,
+            'Test precondition failed: could not create the out-of-root temporary JSON file.'
+        );
+        $this->assertFileExists(
+            $outsidePath,
+            'Test precondition failed: the out-of-root temporary JSON file must exist before executing the command.'
+        );
 
         try {
             [$exitCode, $output] = $this->runImportCommand(['--path' => $outsidePath]);

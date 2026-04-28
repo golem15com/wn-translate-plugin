@@ -9,10 +9,8 @@ use Golem15\Translate\Models\Attribute;
  *
  * @group security
  */
-class MassAssignmentTest extends \PluginTestCase
+class MassAssignmentTest extends \Golem15\Translate\Tests\TranslatePluginTestCase
 {
-    protected $refreshPlugins = ['Golem15.Translate'];
-
     /**
      * @test
      * @group security

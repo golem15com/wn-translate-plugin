@@ -11,10 +11,8 @@
  * These tests MUST FAIL on current code (red-bar regression locks).
  * The remediation milestone's fixes will turn them green.
  */
-class AccessControlTest extends \PluginTestCase
+class AccessControlTest extends \Golem15\Translate\Tests\TranslatePluginTestCase
 {
-    protected $refreshPlugins = ['Golem15.Translate'];
-
     /**
      * TRANSLATE-001: Message model uses $guarded = [] disabling mass-assignment protection.
      *
@@ -38,8 +36,15 @@ class AccessControlTest extends \PluginTestCase
      */
     public function test_translate_001_message_model_guarded_empty(): void
     {
-        $source = file_get_contents(
-            dirname(__DIR__, 2) . '/models/Message.php'
+        $messageModelPath = dirname(__DIR__, 2) . '/models/Message.php';
+        $this->assertFileExists(
+            $messageModelPath,
+            'TRANSLATE-001: Message.php must exist for the source-pattern check.'
+        );
+        $source = file_get_contents($messageModelPath);
+        $this->assertNotFalse(
+            $source,
+            'TRANSLATE-001: Message.php must be readable for the source-pattern check.'
         );
 
         // Check that $guarded is NOT set to empty array
