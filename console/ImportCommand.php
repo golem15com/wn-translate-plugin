@@ -39,16 +39,20 @@ class ImportCommand extends Command
             $this->output->error("File not found: {$path}");
             return 1;
         }
-        if ($allowedRoot === false || !str_starts_with($resolvedPath, $allowedRoot . DIRECTORY_SEPARATOR)) {
+        if ($allowedRoot === false) {
             $this->output->error("Path is outside the project root: {$path}");
             return 1;
         }
-        $path = $resolvedPath;
-
-        if (!file_exists($path)) {
-            $this->output->error("File not found: {$path}");
+        $allowedPrefix = $allowedRoot . DIRECTORY_SEPARATOR;
+        if (strncmp($resolvedPath, $allowedPrefix, strlen($allowedPrefix)) !== 0) {
+            $this->output->error("Path is outside the project root: {$path}");
             return 1;
         }
+        if (!is_file($resolvedPath)) {
+            $this->output->error("Path is not a regular file: {$path}");
+            return 1;
+        }
+        $path = $resolvedPath;
 
         if ($format === 'csv') {
             $data = $this->parseCsv($path);

@@ -271,13 +271,31 @@ class TranslationScanner
      */
     protected function writeLocale($locale, $translations)
     {
-        $path = $this->localePath() . '/' . $locale;
+        // UTIL-03: validate locale name before path concatenation (defense-in-depth, mirrors readLocale).
+        if (!is_string($locale) || !preg_match('/^[a-z]{2,3}(-[A-Z]{2})?$/', $locale)) {
+            return;
+        }
+
+        $localeRoot = $this->localePath();
+        $rootResolved = realpath($localeRoot);
+        if ($rootResolved === false) {
+            return;
+        }
+
+        $path = $localeRoot . '/' . $locale;
 
         if ( ! file_exists($path)) {
             mkdir($path);
         }
 
-        $path = $path . '/lang.php';
+        // Defense-in-depth: refuse to follow a symlinked locale directory outside the root.
+        $resolvedDir = realpath($path);
+        $rootPrefix = $rootResolved . DIRECTORY_SEPARATOR;
+        if ($resolvedDir === false || strncmp($resolvedDir, $rootPrefix, strlen($rootPrefix)) !== 0) {
+            return;
+        }
+
+        $path = $resolvedDir . '/lang.php';
 
         if ( ! file_exists($path)) {
             file_put_contents($path, <<<PHP
