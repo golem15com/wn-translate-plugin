@@ -81,7 +81,7 @@ class TranslationScanner
         $path = realpath($path);
 
         if ( ! $path || ! is_file($path)) {
-            echo $path;
+            \Log::warning('TranslationScanner: could not resolve path', ['path' => $path]);
 
             return false;
         }
