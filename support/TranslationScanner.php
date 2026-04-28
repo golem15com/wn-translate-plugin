@@ -77,11 +77,14 @@ class TranslationScanner
      */
     public function scanFile($path)
     {
-
+        $originalPath = $path;
         $path = realpath($path);
 
         if ( ! $path || ! is_file($path)) {
-            \Log::warning('TranslationScanner: could not resolve path', ['path' => $path]);
+            \Log::warning('TranslationScanner: could not resolve path', [
+                'input'    => $originalPath,
+                'resolved' => $path,
+            ]);
 
             return false;
         }
@@ -219,7 +222,7 @@ class TranslationScanner
         foreach ($iterator as $name => $dir) {
             /** @var SplFileInfo $dir */
             $name = basename($name);
-            if (preg_match('/^[a-z]{2,3}$/', $name) && $dir->isWritable()) {
+            if (preg_match('/^[a-z]{2,3}(-[A-Z]{2})?$/', $name) && $dir->isWritable()) {
                 $locales[] = $name;
             }
         }
@@ -250,7 +253,11 @@ class TranslationScanner
         // Defense-in-depth: confirm the resolved path stays inside the allowed root.
         $resolved = realpath($path);
         $rootResolved = realpath($localeRoot);
-        if ($resolved === false || $rootResolved === false || !str_starts_with($resolved, $rootResolved . DIRECTORY_SEPARATOR)) {
+        if ($resolved === false || $rootResolved === false) {
+            return [];
+        }
+        $rootPrefix = $rootResolved . DIRECTORY_SEPARATOR;
+        if (strncmp($resolved, $rootPrefix, strlen($rootPrefix)) !== 0) {
             return [];
         }
 

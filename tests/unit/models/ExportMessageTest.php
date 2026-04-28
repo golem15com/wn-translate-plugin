@@ -12,6 +12,12 @@ class ExportMessageTest extends \Golem15\Translate\Tests\TranslatePluginTestCase
         Message::truncate();
     }
 
+    public function tearDown(): void
+    {
+        Locale::reguard();
+        parent::tearDown();
+    }
+
     public function testCanHandleNoMessages()
     {
         $exportModel = new MessageExport();

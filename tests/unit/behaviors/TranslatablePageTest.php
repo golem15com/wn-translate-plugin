@@ -134,6 +134,7 @@ class TranslatablePageTest extends \Golem15\Translate\Tests\TranslatePluginTestC
         ];
 
         $method = new ReflectionMethod(ThemeScanner::class, 'processStandardTags');
+        $method->setAccessible(true);
 
         foreach ($check_strings as $check) {
             $this->assertEquals($method->invoke($scanner, $check[0]), $check[1]);

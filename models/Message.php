@@ -25,7 +25,6 @@ class Message extends Model
     protected $fillable = [
         'code',
         'message_data',
-        'found',
     ];
 
     /**

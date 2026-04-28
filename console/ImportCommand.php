@@ -102,11 +102,12 @@ class ImportCommand extends Command
                     }
                 }
             } else {
-                Message::create([
+                $message = Message::create([
                     'code' => $code,
                     'message_data' => $messageData,
-                    'found' => true,
                 ]);
+                $message->found = true;
+                $message->save();
                 $created++;
             }
         }
