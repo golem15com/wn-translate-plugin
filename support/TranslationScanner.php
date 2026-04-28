@@ -235,13 +235,26 @@ class TranslationScanner
      */
     protected function readLocale($locale)
     {
-        $path = $this->localePath() . '/' . $locale . '/lang.php';
-
-        if ( ! file_exists($path)) {
+        // UTIL-03 / TRANSLATE-003: validate locale name against strict regex BEFORE path concatenation.
+        if (!is_string($locale) || !preg_match('/^[a-z]{2,3}(-[A-Z]{2})?$/', $locale)) {
             return [];
         }
 
-        return include $path;
+        $localeRoot = $this->localePath();
+        $path = $localeRoot . '/' . $locale . '/lang.php';
+
+        if (!file_exists($path)) {
+            return [];
+        }
+
+        // Defense-in-depth: confirm the resolved path stays inside the allowed root.
+        $resolved = realpath($path);
+        $rootResolved = realpath($localeRoot);
+        if ($resolved === false || $rootResolved === false || !str_starts_with($resolved, $rootResolved . DIRECTORY_SEPARATOR)) {
+            return [];
+        }
+
+        return include $resolved;
     }
 
 

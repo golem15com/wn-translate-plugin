@@ -32,6 +32,19 @@ class ImportCommand extends Command
         $path = $this->option('path') ?: base_path($defaultFile);
         $overwrite = $this->option('overwrite');
 
+        // UTIL-04 / TRANSLATE-004: containment check — only allow paths inside base_path().
+        $resolvedPath = realpath($path);
+        $allowedRoot = realpath(base_path());
+        if ($resolvedPath === false) {
+            $this->output->error("File not found: {$path}");
+            return 1;
+        }
+        if ($allowedRoot === false || !str_starts_with($resolvedPath, $allowedRoot . DIRECTORY_SEPARATOR)) {
+            $this->output->error("Path is outside the project root: {$path}");
+            return 1;
+        }
+        $path = $resolvedPath;
+
         if (!file_exists($path)) {
             $this->output->error("File not found: {$path}");
             return 1;
