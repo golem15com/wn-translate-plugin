@@ -6,9 +6,9 @@ use DB;
 use Winter\Storm\Database\Updates\Seeder;
 
 /**
- * Seed Polish and German locales for Quotify.pro
+ * Seed additional Polish and German locales.
  */
-class SeedQuotifyLocales extends Seeder
+class SeedAdditionalLocales extends Seeder
 {
     protected $locales = [
         [
