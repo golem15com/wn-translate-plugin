@@ -3,15 +3,12 @@
 namespace Golem15\Translate\Console;
 
 use Illuminate\Console\Command;
+use Symfony\Component\Console\Attribute\AsCommand;
 use Golem15\Translate\Models\Message;
 
+#[AsCommand(name: 'translate:import', description: 'Import translations from a JSON or CSV file.')]
 class ImportCommand extends Command
 {
-    /**
-     * @var string|null The default command name for lazy loading.
-     */
-    protected static $defaultName = 'translate:import';
-
     /**
      * @var string The name and signature of this command.
      */

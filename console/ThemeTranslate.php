@@ -6,8 +6,10 @@ namespace Golem15\Translate\Console;
 use Golem15\Translate\Support\TranslationScanner;
 use Illuminate\Console\Command;
 use InvalidArgumentException;
+use Symfony\Component\Console\Attribute\AsCommand;
 use Symfony\Component\Console\Input\InputArgument;
 
+#[AsCommand(name: 'theme:translate')]
 class ThemeTranslate extends Command
 {
 
