@@ -4,22 +4,23 @@ use Golem15\Translate\Console\ImportCommand;
 use Golem15\Translate\Support\TranslationScanner;
 use ReflectionMethod;
 use Symfony\Component\Console\Tester\CommandTester;
+use PHPUnit\Framework\Attributes\Group;
+use PHPUnit\Framework\Attributes\Test;
 
 /**
  * Security regression tests for TRANSLATE-003 / UTIL-03 (path-traversal in TranslationScanner)
  * and TRANSLATE-004 / UTIL-04 (out-of-root --path argument in ImportCommand).
- *
- * @group security
  */
+#[Group('security')]
 class PathTraversalTest extends \Golem15\Translate\Tests\TranslatePluginTestCase
 {
     /**
      * UTIL-03: TranslationScanner::readLocale rejects path-traversal and malformed locale codes.
      *
-     * @test
-     * @group security
      * @see .planning/audit/plugins/golem15/translate/FINDINGS.md #TRANSLATE-003
      */
+    #[Test]
+    #[Group('security')]
     public function test_translate_003_path_traversal(): void
     {
         $scanner = TranslationScanner::instance();
@@ -53,10 +54,10 @@ class PathTraversalTest extends \Golem15\Translate\Tests\TranslatePluginTestCase
      * Behavioral test — invokes the actual Artisan command with an out-of-root path
      * and asserts a non-zero exit code plus the documented error message.
      *
-     * @test
-     * @group security
      * @see .planning/audit/plugins/golem15/translate/FINDINGS.md #TRANSLATE-004
      */
+    #[Test]
+    #[Group('security')]
     public function test_translate_004_import_path_out_of_root(): void
     {
         $outsideDir = sys_get_temp_dir();
@@ -101,10 +102,9 @@ class PathTraversalTest extends \Golem15\Translate\Tests\TranslatePluginTestCase
 
     /**
      * UTIL-04: ImportCommand rejects --path values that resolve to a directory.
-     *
-     * @test
-     * @group security
      */
+    #[Test]
+    #[Group('security')]
     public function test_translate_004_import_path_must_be_file(): void
     {
         // A subdirectory inside the project root — passes containment but fails the is_file() check.
@@ -133,10 +133,9 @@ class PathTraversalTest extends \Golem15\Translate\Tests\TranslatePluginTestCase
      * misleading "outside the project root" one) when --path resolves to the
      * project root itself. Pins the strncmp() containment fix that exempts
      * an exact-root match from the prefix check so is_file() can take over.
-     *
-     * @test
-     * @group security
      */
+    #[Test]
+    #[Group('security')]
     public function test_translate_004_import_path_equal_to_root(): void
     {
         [$exitCode, $output] = $this->runImportCommand(['--path' => base_path()]);

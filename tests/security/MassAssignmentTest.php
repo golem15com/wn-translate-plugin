@@ -1,21 +1,22 @@
 <?php namespace Golem15\Translate\Tests\Security;
 
 use Golem15\Translate\Models\Attribute;
+use PHPUnit\Framework\Attributes\Group;
+use PHPUnit\Framework\Attributes\Test;
 
 /**
  * Security regression test for TRANSLATE-002 / UTIL-02.
  * Behavioral check — exercises actual fill() to confirm the runtime mass-assignment
  * protection enforced by the model, instead of inspecting source patterns.
- *
- * @group security
  */
+#[Group('security')]
 class MassAssignmentTest extends \Golem15\Translate\Tests\TranslatePluginTestCase
 {
     /**
-     * @test
-     * @group security
      * @see .planning/audit/plugins/golem15/translate/FINDINGS.md #TRANSLATE-002
      */
+    #[Test]
+    #[Group('security')]
     public function test_translate_002_attribute_fillable(): void
     {
         $model = new Attribute();

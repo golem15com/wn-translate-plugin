@@ -1,17 +1,19 @@
 <?php namespace Golem15\Translate\Tests\Security;
 
+use PHPUnit\Framework\Attributes\Group;
+use PHPUnit\Framework\Attributes\Test;
+
 /**
  * Security regression tests for HIGH finding TRANSLATE-001.
  * Each test method is named test_translate_NNN_<short_slug> and references
  * the finding in .planning/audit/plugins/golem15/translate/FINDINGS.md.
- *
- * @group security
  *
  * Per Phase 7 D-20: PoC tests use HTTP-only + unit fidelity.
  * These tests assert that the remediation remains in place and should pass
  * while the code is fixed, failing only if the vulnerable behavior is
  * reintroduced.
  */
+#[Group('security')]
 class AccessControlTest extends \Golem15\Translate\Tests\TranslatePluginTestCase
 {
     /**
@@ -31,11 +33,11 @@ class AccessControlTest extends \Golem15\Translate\Tests\TranslatePluginTestCase
      * This regression test should pass while that protection remains in place
      * and fail only if $guarded = [] is reintroduced.
      *
-     * @test
-     * @group security
      * @see .planning/audit/plugins/golem15/translate/FINDINGS.md #TRANSLATE-001
      * @see .planning/audit/DASHBOARD.md #TRANSLATE-001
      */
+    #[Test]
+    #[Group('security')]
     public function test_translate_001_message_model_guarded_empty(): void
     {
         $messageModelPath = dirname(__DIR__, 2) . '/models/Message.php';
