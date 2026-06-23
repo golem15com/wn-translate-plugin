@@ -227,11 +227,26 @@ class ThemeScanner
         }
 
         $tokens = [];
-        while (!$stream->isEOF()) {
-            $token = $stream->next();
-            $token->typeString = $token->typeToString($token->getType(), true);
-            $tokens[] = $token;
+
+        // Walking the token stream raises two deprecations per token: Twig 3.19+
+        // deprecates Token::getType() (E_USER_DEPRECATED) and PHP 8.4+ deprecates the
+        // dynamic Token::$typeString property assigned below (E_DEPRECATED). Under the
+        // framework deprecation handler each notice is very expensive (it resolves the
+        // container and triggers class autoloading), so scanning every template turns a
+        // theme scan into an effective hang. Swallow only these deprecation notices
+        // while tokenizing -- behaviour is unchanged -- and let every other error fall
+        // through to the real handler.
+        set_error_handler(static fn () => true, E_USER_DEPRECATED | E_DEPRECATED);
+        try {
+            while (!$stream->isEOF()) {
+                $token = $stream->next();
+                $token->typeString = $token->typeToString($token->getType(), true);
+                $tokens[] = $token;
+            }
+        } finally {
+            restore_error_handler();
         }
+
         return $tokens;
     }
 
