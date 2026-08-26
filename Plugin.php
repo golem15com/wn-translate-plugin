@@ -212,9 +212,15 @@ class Plugin extends PluginBase
         \System\Models\MailTemplate::extend(function ($model) {
             // FIX: Pass complete array directly to addDynamicProperty - don't try to reassign
             // The issue was that array_merge() result assignment fails after addDynamicProperty()
+            // The @create / @update suffixes belong to the FORM FIELD names in
+            // modules/system/models/mailtemplate/fields.yaml, not here.
+            // processFormMLFields() strips the @context off the field name before
+            // matching it against this list, so a plain 'subject' still resolves both
+            // forms to the ML widget. Carrying the suffix in this list instead made
+            // isTranslatable('subject') false -- subject translations were written to
+            // winter_translate_attributes and then silently ignored on read.
             $model->addDynamicProperty('translatable', [
-                'subject@create',   // Context-specific for create form
-                'subject@update',   // Context-specific for update form
+                'subject',
                 'description',
                 'content_html',
                 'content_text'
